@@ -54,7 +54,7 @@ import java.io.*;
 
 
 class Node {
-   float x, y, theta, length, cLength, diameter, birthTime; // length and cLength are in pixels
+   float x, y, theta, length, cLength, diameter, birthTime, pixValue, prevPixValue; // length and cLength are in pixels
    float[] bx = new float[6]; // border
    float[] by = new float[6]; // border
    Node child;
@@ -505,7 +505,7 @@ class Node {
     * @param diamDOM the xml element contining the diameter elements
     * @param dpi
     */
-   public void readRSML(org.w3c.dom.Node parentDOM, org.w3c.dom.Node diamDOM, float dpi, float scale) {
+   public void readRSML(org.w3c.dom.Node parentDOM, org.w3c.dom.Node diamDOM, org.w3c.dom.Node pixDOM, float dpi, float scale) {
 	   
 		  org.w3c.dom.Node nn = parentDOM.getAttributes().getNamedItem("x");
 		  if (nn != null) x = Float.valueOf(nn.getNodeValue()).floatValue() * dpi * scale;
@@ -525,6 +525,19 @@ class Node {
 						  
 			  }
 		  }
+		  if(pixDOM != null){
+			  // if node is stored as <sample value='xx'/>
+			  nn = pixDOM.getAttributes().getNamedItem("value");
+			  if(nn != null) prevPixValue = Float.valueOf(nn.getNodeValue()).floatValue();		  
+			  // if node is stored as <sample>xx</sample>
+			  else{
+				  try{
+					  prevPixValue = Float.valueOf(pixDOM.getFirstChild().getNodeValue()).floatValue();
+				  }
+				  catch(Exception e){}
+						  
+			  }
+		  }		  
 	      if (parent != null) {
 	          float dx = x - parent.x;
 	          float dy = y - parent.y;
@@ -564,7 +577,18 @@ class Node {
    public void saveOrientationToRSML(FileWriter dataOut) throws IOException {
 	      String nL = System.getProperty("line.separator");
 	      dataOut.write("						<sample>" + Float.toString(theta) + "</sample>" + nL);
-	      }   
+	      } 
+   
+   
+   /**
+    * Save the node pixel value to the RSML file
+    * @param dataOut
+    * @throws IOException
+    */
+   public void savePixelToRSML(FileWriter dataOut, NodeFitter fit) throws IOException {
+	      String nL = System.getProperty("line.separator");
+	      dataOut.write("						<sample>" + Float.toString(fit.getValue(x, y)) + "</sample>" + nL);
+	      }    
    
    /**
     * Save the anotation to the RSML file

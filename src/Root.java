@@ -1020,6 +1020,30 @@ class Root{
           nodeDOM = nodeDOM.getNextSibling(); 
       }
 
+	  // Get the diameter nodes
+	  org.w3c.dom.Node nodePixels = null; 
+	  org.w3c.dom.Node nodePix = null;	  
+      nodeDOM = parentDOM.getFirstChild();
+      while (nodeDOM != null) {
+          String nName = nodeDOM.getNodeName();
+          if(nName.equals("functions")){
+			   org.w3c.dom.Node nodeFunctions = nodeDOM.getFirstChild();
+			   while(nodeFunctions != null){
+			      String fName = nodeFunctions.getNodeName();
+		          if(fName.equals("function")){
+				      String fAtt1 = nodeFunctions.getAttributes().getNamedItem("name").getNodeValue();
+				      String fAtt2 = nodeFunctions.getAttributes().getNamedItem("domain").getNodeValue();
+			          if(fAtt1.equals("pixel") & fAtt2.equals("polyline")){
+			        	  nodePixels = nodeFunctions;
+			        	  break;
+			          }
+		          }
+		          nodeFunctions = nodeFunctions.getNextSibling();
+			   }
+          }
+          nodeDOM = nodeDOM.getNextSibling(); 
+      }      
+      
 	  nodeDOM = parentDOM.getFirstChild();
       while (nodeDOM != null) {
          String nName = nodeDOM.getNodeName();
@@ -1032,21 +1056,28 @@ class Root{
 				   if (geomName.equals("polyline")) {
 					   org.w3c.dom.Node nodePoint = nodeGeom.getFirstChild();
 					   if(nodeDiameters != null) nodeDiam = nodeDiameters.getFirstChild();		   
+					   if(nodePixels != null) nodePix = nodePixels.getFirstChild();		   
 					   while (nodePoint != null) {
 						   	String pointName = nodePoint.getNodeName();
 						   if (pointName.equals("point")) {
 							   	if(counter == clock){
 							   		Node no = addNode(0.0f, 0.0f, false);
 			        			 	if(nodeDiam != null){
-			        			 		no.readRSML(nodePoint, nodeDiam, 1, scale);
+				        			 	if(nodeDiam != null){
+				        			 		no.readRSML(nodePoint, nodeDiam, nodePix, 1, scale);
+				        			 	}
+				        			 	else no.readRSML(nodePoint, nodeDiam, null, 1, scale);
 			        			 	}
-			        			 	else no.readRSML(nodePoint, null, 1, scale);
+			        			 	else{
+			        			 		no.readRSML(nodePoint, null, null, 1, scale);		        			 	
+			        			 	}
 			        			 	counter = 0;
 							   	}
 							   	counter++;
 						   }
 						   nodePoint = nodePoint.getNextSibling();
 						   if(nodeDiam != null) nodeDiam = nodeDiam.getNextSibling();
+						   if(nodePix != null) nodePix = nodePix.getNextSibling();
 					   }
 					   this.firstNode.calcCLength(0.0f);
 					   if(validate()){
@@ -1424,7 +1455,7 @@ class Root{
     * @param dataOut
     * @throws IOException
     */
-   public void saveRSML(FileWriter dataOut) throws IOException {
+   public void saveRSML(FileWriter dataOut, NodeFitter fit) throws IOException {
       Node n = firstNode;
       if (n == null) return;
       
@@ -1468,7 +1499,14 @@ class Root{
          n.saveOrientationToRSML(dataOut);
          n = n.child;
          }
-      dataOut.write("					</function>" + nL);        
+      dataOut.write("					</function>" + nL); 
+      dataOut.write("					<function name='pixel' domain='polyline'>" + nL);      
+      n = firstNode;      
+      while (n != null) {
+         n.savePixelToRSML(dataOut, fit);
+         n = n.child;
+         }
+      dataOut.write("					</function>" + nL);       
       dataOut.write("				</functions>" + nL);       
       
       
@@ -1483,7 +1521,7 @@ class Root{
       // Save the children
       for(int i = 0; i < childList.size(); i++){
     	Root r = childList.get(i);
-    	r.saveRSML(dataOut);
+    	r.saveRSML(dataOut, fit);
       }
       
 //      dataOut.write(" <measurments>" + nL);      

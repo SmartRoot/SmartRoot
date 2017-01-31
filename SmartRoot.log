@@ -1,3 +1,1360 @@
 The specified database was not found.
 You will not be able to write to a database.
 You will still be able to export to a .csv file.
+There is one instance of RootImageCanvas
+An I/O error occured while attemping to read the datafile.
+A new empty datafile will be created.
+Backup versions of the datafile, if any, can be loaded
+using the File -> Use backup datafile menu item.
+pre-threshold 128.75
+threshold at: 2008 792 radius 20 -> value:110 min: 95 max: 155 pct: 137 threshold: 128.75
+reCenter on 2008.5 792.5
+pre-threshold 128.75
+threshold at: 2008 792 radius 20 -> value:110 min: 95 max: 155 pct: 137 threshold: 128.75
+reCenter l[minI]: 6.5 likelyradius 0.0
+AutoTrace -> true
+reCenter Done :2008.5 792.5 6.5008593
+pre-threshold 127.75
+threshold at: 2008 792 radius 7 -> value:110 min: 105 max: 148 pct: 126 threshold: 127.75
+reCenter on 2008.3096 786.00195
+pre-threshold 124.25
+threshold at: 2008 786 radius 7 -> value:110 min: 97 max: 145 pct: 120 threshold: 124.25
+reCenter l[minI]: 6.0 likelyradius 3.2504296
+AutoTrace -> true
+reCenter Done :2007.6958 786.43933 5.998286
+reCenter on 2006.1178 774.547
+pre-threshold 117.0
+threshold at: 2006 774 radius 6 -> value:96 min: 92 max: 140 pct: 120 threshold: 117.0
+reCenter l[minI]: 5.5 likelyradius 2.999143
+AutoTrace -> true
+reCenter Done :2005.625 774.6312 5.4992657
+reCenter on 2003.7252 763.79803
+pre-threshold 121.25
+threshold at: 2003 763 radius 6 -> value:105 min: 90 max: 145 pct: 118 threshold: 121.25
+reCenter l[minI]: 9.0 likelyradius 2.7496328
+AutoTrace -> true
+reCenter Done :2004.6843 763.51636 5.4992657
+reCenter on 2003.7568 752.557
+pre-threshold 117.75
+threshold at: 2003 752 radius 6 -> value:99 min: 90 max: 141 pct: 116 threshold: 117.75
+reCenter l[minI]: 5.5 likelyradius 2.7496328
+AutoTrace -> true
+reCenter Done :2002.7761 752.7521 5.499466
+reCenter on 2000.8562 741.922
+pre-threshold 103.0
+threshold at: 2000 741 radius 6 -> value:81 min: 51 max: 140 pct: 81 threshold: 103.0
+reCenter l[minI]: 24.5 likelyradius 2.749733
+AutoTrace -> true
+reCenter Done :2000.8562 741.922 5.499466
+AutobuildFromNode: findEnd
+findEnd 1
+pre-threshold 127.75
+threshold at: 2008 792 radius 7 -> value:110 min: 105 max: 148 pct: 126 threshold: 127.75
+maxL: 54.100136 at 2013.0898 846.40515 dist = 54.100204
+FindEnd Try recenter
+reCenter on 2009.0515 798.9774
+pre-threshold 126.25
+threshold at: 2009 798 radius 7 -> value:105 min: 104 max: 148 pct: 130 threshold: 126.25
+reCenter l[minI]: 6.0 likelyradius 3.2504296
+AutoTrace -> false
+reCenter Done :2010.2029 798.4911 5.999474
+findEnd not end
+AutobuildFromNode: findEnd -> 4
+reCenter on 2013.4835 810.03284
+pre-threshold 121.25
+threshold at: 2013 810 radius 6 -> value:107 min: 96 max: 141 pct: 123 threshold: 121.25
+reCenter l[minI]: 5.0 likelyradius 2.999737
+AutoTrace -> true
+reCenter Done :2012.7701 810.2645 5.000479
+reCenter on 2014.2083 816.85956
+pre-threshold 116.0
+threshold at: 2014 816 radius 6 -> value:95 min: 95 max: 137 pct: 115 threshold: 116.0
+reCenter l[minI]: 7.0 likelyradius 2.5002396
+AutoTrace -> true
+reCenter Done :2013.9796 816.96063 5.000479
+reCenter on 2014.5573 820.1589
+pre-threshold 117.75
+threshold at: 2014 820 radius 6 -> value:102 min: 95 max: 137 pct: 116 threshold: 117.75
+reCenter l[minI]: 8.0 likelyradius 2.5002396
+AutoTrace -> true
+reCenter Done :2015.1733 820.5864 5.000479
+AutobuildFromNode: findEnd
+findEnd 1
+pre-threshold 119.5
+threshold at: 2013 816 radius 6 -> value:101 min: 95 max: 141 pct: 118 threshold: 119.5
+maxL: 50.900124 at 2009.4749 867.6618 dist = 50.9009
+FindEnd Try recenter
+reCenter on 2013.5371 821.94147
+pre-threshold 120.0
+threshold at: 2013 821 radius 6 -> value:103 min: 95 max: 141 pct: 118 threshold: 120.0
+reCenter l[minI]: 5.0 likelyradius 2.5002396
+AutoTrace -> false
+reCenter Done :2013.3323 822.92065 4.6095986
+findEnd not end
+AutobuildFromNode: findEnd -> 4
+reCenter on 2012.3368 832.08594
+pre-threshold 125.5
+threshold at: 2012 832 radius 5 -> value:111 min: 105 max: 143 pct: 121 threshold: 125.5
+reCenter l[minI]: 9.0 likelyradius 2.3047993
+AutoTrace -> true
+reCenter Done :2013.2427 833.2123 4.6095986
+reCenter on 2013.2144 836.46216
+pre-threshold 125.0
+threshold at: 2013 836 radius 5 -> value:113 min: 99 max: 144 pct: 122 threshold: 125.0
+reCenter l[minI]: 7.0 likelyradius 2.3047993
+AutoTrace -> true
+reCenter Done :2012.4751 835.7099 4.6095986
+reCenter on 2009.7668 844.52234
+pre-threshold 122.0
+threshold at: 2009 844 radius 5 -> value:99 min: 99 max: 145 pct: 123 threshold: 122.0
+reCenter l[minI]: 9.5 likelyradius 2.3047993
+AutoTrace -> true
+reCenter Done :2008.856 842.8032 4.6095986
+reCenter on 2007.6082 845.5314
+pre-threshold 129.25
+threshold at: 2007 845 radius 5 -> value:126 min: 99 max: 146 pct: 133 threshold: 129.25
+reCenter l[minI]: 20.5 likelyradius 2.3047993
+AutoTrace -> true
+reCenter Done :2007.6082 845.5314 4.6095986
+reCenter on 2007.5 847.5
+pre-threshold 128.75
+threshold at: 2007 847 radius 5 -> value:124 min: 99 max: 146 pct: 130 threshold: 128.75
+reCenter l[minI]: 6.5 likelyradius 2.3047993
+AutoTrace -> true
+reCenter Done :2009.5571 847.8058 4.6095986
+reCenter on 2008.8334 850.8333
+pre-threshold 126.5
+threshold at: 2008 850 radius 5 -> value:115 min: 97 max: 147 pct: 123 threshold: 126.5
+reCenter l[minI]: 5.5 likelyradius 2.3047993
+AutoTrace -> true
+reCenter Done :2009.3718 850.8631 5.484928
+reCenter on 2009.5 853.5
+pre-threshold 122.0
+threshold at: 2009 853 radius 5 -> value:97 min: 97 max: 147 pct: 122 threshold: 122.0
+reCenter l[minI]: 5.0 likelyradius 2.3047993
+AutoTrace -> true
+reCenter Done :2009.2866 853.6444 4.9987426
+reCenter on 2010.1666 855.5
+pre-threshold 123.0
+threshold at: 2010 855 radius 5 -> value:105 min: 97 max: 145 pct: 122 threshold: 123.0
+reCenter l[minI]: 5.5 likelyradius 2.3047993
+AutoTrace -> true
+reCenter Done :2009.4119 855.0313 5.300533
+reCenter on 2011.5 856.8333
+pre-threshold 128.75
+threshold at: 2011 856 radius 5 -> value:112 min: 97 max: 153 pct: 119 threshold: 128.75
+reCenter l[minI]: 6.5 likelyradius 2.3047993
+AutoTrace -> true
+reCenter Done :2009.3755 856.32587 6.258136
+reCenter on 2011.5 857.5
+pre-threshold 127.75
+threshold at: 2011 857 radius 5 -> value:108 min: 97 max: 153 pct: 117 threshold: 127.75
+reCenter l[minI]: 6.5 likelyradius 2.3047993
+AutoTrace -> true
+reCenter Done :2009.3887 856.68945 4.6095986
+reCenter on 2011.5 858.1667
+pre-threshold 128.0
+threshold at: 2011 858 radius 5 -> value:109 min: 97 max: 153 pct: 116 threshold: 128.0
+reCenter l[minI]: 7.5 likelyradius 2.3047993
+AutoTrace -> true
+reCenter Done :2010.5928 858.7044 4.6095986
+reCenter on 2011.5 858.1667
+pre-threshold 128.0
+threshold at: 2011 858 radius 5 -> value:109 min: 97 max: 153 pct: 116 threshold: 128.0
+reCenter l[minI]: 7.5 likelyradius 2.3047993
+AutoTrace -> true
+reCenter Done :2010.5928 858.7044 4.6095986
+reCenter on 2011.5 858.8333
+pre-threshold 128.0
+threshold at: 2011 858 radius 5 -> value:109 min: 97 max: 153 pct: 116 threshold: 128.0
+reCenter l[minI]: 7.5 likelyradius 2.3047993
+AutoTrace -> true
+reCenter Done :2011.1458 859.26013 4.6095986
+reCenter on 2011.5 858.8333
+pre-threshold 128.0
+threshold at: 2011 858 radius 5 -> value:109 min: 97 max: 153 pct: 116 threshold: 128.0
+reCenter l[minI]: 7.5 likelyradius 2.3047993
+AutoTrace -> true
+reCenter Done :2011.1458 859.26013 4.6095986
+reCenter on 2011.5 858.8333
+pre-threshold 128.0
+threshold at: 2011 858 radius 5 -> value:109 min: 97 max: 153 pct: 116 threshold: 128.0
+reCenter l[minI]: 7.5 likelyradius 2.3047993
+AutoTrace -> true
+reCenter Done :2011.1458 859.26013 4.6095986
+reCenter on 2011.5 858.8333
+pre-threshold 128.0
+threshold at: 2011 858 radius 5 -> value:109 min: 97 max: 153 pct: 116 threshold: 128.0
+reCenter l[minI]: 7.5 likelyradius 2.3047993
+AutoTrace -> true
+reCenter Done :2011.1458 859.26013 4.6095986
+reCenter on 2012.4163 868.39136
+pre-threshold 127.75
+threshold at: 2012 868 radius 5 -> value:111 min: 102 max: 149 pct: 118 threshold: 127.75
+reCenter l[minI]: 17.5 likelyradius 2.3047993
+AutoTrace -> true
+reCenter Done :2014.7661 870.16705 4.6095986
+reCenter on 2017.6704 878.9168
+pre-threshold 126.25
+threshold at: 2017 878 radius 5 -> value:110 min: 99 max: 148 pct: 116 threshold: 126.25
+reCenter l[minI]: 13.0 likelyradius 2.3047993
+AutoTrace -> true
+reCenter Done :2014.1443 877.14795 4.6095986
+AutobuildFromNode: findEnd
+findEnd 1
+pre-threshold 129.5
+threshold at: 2014 877 radius 5 -> value:112 min: 104 max: 151 pct: 122 threshold: 129.5
+maxL: 33.700058 at 2037.4487 901.4809 dist = 33.692574
+FindEnd Try recenter
+reCenter on 2017.3326 880.47705
+pre-threshold 126.0
+threshold at: 2017 880 radius 5 -> value:109 min: 99 max: 148 pct: 118 threshold: 126.0
+reCenter l[minI]: 6.5 likelyradius 2.3047993
+AutoTrace -> false
+reCenter Done :2017.7089 879.5377 6.4925804
+findEnd not end
+AutobuildFromNode: findEnd -> 4
+reCenter on 2021.6543 882.1828
+pre-threshold 127.5
+threshold at: 2021 882 radius 7 -> value:115 min: 99 max: 148 pct: 126 threshold: 127.5
+reCenter l[minI]: 7.0 likelyradius 3.2462902
+AutoTrace -> true
+reCenter Done :2020.6434 883.6113 6.999994
+reCenter on 2026.6346 891.92804
+pre-threshold 126.25
+threshold at: 2026 891 radius 7 -> value:103 min: 94 max: 154 pct: 127 threshold: 126.25
+reCenter l[minI]: 6.0 likelyradius 3.2462902
+AutoTrace -> true
+reCenter Done :2026.4207 892.0574 5.9999433
+reCenter on 2029.4193 896.3667
+pre-threshold 122.75
+threshold at: 2029 896 radius 6 -> value:104 min: 93 max: 147 pct: 121 threshold: 122.75
+reCenter l[minI]: 6.5 likelyradius 2.9999716
+AutoTrace -> true
+reCenter Done :2028.6202 896.9679 6.4997144
+reCenter on 2029.8467 899.70575
+pre-threshold 126.5
+threshold at: 2029 899 radius 6 -> value:107 min: 93 max: 153 pct: 122 threshold: 126.5
+reCenter l[minI]: 7.0 likelyradius 2.9999716
+AutoTrace -> true
+reCenter Done :2029.1697 901.0132 6.5255804
+reCenter on 2030.05 903.8811
+pre-threshold 130.0
+threshold at: 2030 903 radius 7 -> value:117 min: 93 max: 155 pct: 125 threshold: 130.0
+reCenter l[minI]: 7.0 likelyradius 3.2627902
+AutoTrace -> true
+reCenter Done :2028.3628 904.3457 6.999907
+reCenter on 2025.0682 917.95233
+pre-threshold 125.25
+threshold at: 2025 917 radius 7 -> value:106 min: 101 max: 147 pct: 128 threshold: 125.25
+reCenter l[minI]: 5.5 likelyradius 3.2627902
+AutoTrace -> true
+reCenter Done :2024.1183 917.6397 5.500481
+reCenter on 2020.9204 928.1656
+pre-threshold 118.5
+threshold at: 2020 928 radius 6 -> value:98 min: 96 max: 140 pct: 117 threshold: 118.5
+reCenter l[minI]: 6.5 likelyradius 2.7502406
+AutoTrace -> true
+reCenter Done :2021.412 928.25665 6.4991107
+reCenter on 2019.2507 936.73553
+pre-threshold 118.5
+threshold at: 2019 936 radius 7 -> value:98 min: 94 max: 141 pct: 120 threshold: 118.5
+reCenter l[minI]: 6.5 likelyradius 3.2495553
+AutoTrace -> true
+reCenter Done :2020.694 937.14386 6.4993963
+reCenter on 2019.6472 950.10046
+pre-threshold 126.5
+threshold at: 2019 950 radius 7 -> value:105 min: 97 max: 152 pct: 120 threshold: 126.5
+reCenter l[minI]: 8.5 likelyradius 3.2496982
+AutoTrace -> true
+reCenter Done :2019.15 950.0472 6.4993963
+reCenter on 2017.6057 962.9539
+pre-threshold 129.75
+threshold at: 2017 962 radius 7 -> value:111 min: 106 max: 151 pct: 125 threshold: 129.75
+reCenter l[minI]: 10.5 likelyradius 3.2496982
+AutoTrace -> true
+reCenter Done :2017.6062 962.954 6.4993963
+reCenter on 2016.0624 975.8608
+pre-threshold 129.5
+threshold at: 2016 975 radius 7 -> value:115 min: 99 max: 152 pct: 122 threshold: 129.5
+reCenter l[minI]: 9.0 likelyradius 3.2496982
+AutoTrace -> true
+reCenter Done :2013.8359 975.5353 6.4993963
+reCenter on 2012.0419 981.5222
+pre-threshold 126.75
+threshold at: 2012 981 radius 7 -> value:106 min: 99 max: 151 pct: 117 threshold: 126.75
+reCenter l[minI]: 18.0 likelyradius 3.2496982
+AutoTrace -> true
+reCenter Done :2014.8931 982.4585 6.4993963
+reCenter on 2016.8551 995.30835
+pre-threshold 127.25
+threshold at: 2016 995 radius 7 -> value:113 min: 98 max: 149 pct: 129 threshold: 127.25
+reCenter l[minI]: 7.0 likelyradius 3.2496982
+AutoTrace -> true
+reCenter Done :2015.1188 995.52734 7.000328
+reCenter on 2015.3606 1009.52594
+pre-threshold 128.0
+threshold at: 2015 1009 radius 8 -> value:113 min: 99 max: 150 pct: 133 threshold: 128.0
+reCenter l[minI]: 7.0 likelyradius 3.500164
+AutoTrace -> true
+reCenter Done :2016.6082 1009.60486 7.000278
+reCenter on 2018.0812 1023.5277
+pre-threshold 135.0
+threshold at: 2018 1023 radius 8 -> value:119 min: 105 max: 158 pct: 132 threshold: 135.0
+reCenter l[minI]: 8.0 likelyradius 3.500139
+AutoTrace -> true
+reCenter Done :2016.8315 1023.55884 8.000649
+reCenter on 2017.0876 1039.5581
+pre-threshold 134.75
+threshold at: 2017 1039 radius 9 -> value:112 min: 107 max: 160 pct: 141 threshold: 134.75
+reCenter l[minI]: 7.5 likelyradius 4.0003247
+AutoTrace -> true
+reCenter Done :2017.7345 1040.6089 7.152556
+reCenter on 2018.491 1054.8939
+pre-threshold 131.25
+threshold at: 2018 1054 radius 8 -> value:115 min: 104 max: 153 pct: 136 threshold: 131.25
+reCenter l[minI]: 7.0 likelyradius 3.576278
+AutoTrace -> true
+reCenter Done :2017.7417 1054.862 6.9994836
+reCenter on 2017.7488 1068.8611
+pre-threshold 134.5
+threshold at: 2017 1068 radius 7 -> value:118 min: 104 max: 158 pct: 132 threshold: 134.5
+reCenter l[minI]: 7.5 likelyradius 3.4997418
+AutoTrace -> true
+reCenter Done :2017.7488 1068.8611 7.500266
+reCenter on 2017.7557 1082.6111
+pre-threshold 134.5
+threshold at: 2017 1082 radius 8 -> value:113 min: 103 max: 161 pct: 128 threshold: 134.5
+reCenter l[minI]: 9.0 likelyradius 3.750133
+AutoTrace -> true
+reCenter Done :2018.4998 1082.706 8.999925
+reCenter on 2019.082 1093.4403
+pre-threshold 135.5
+threshold at: 2019 1093 radius 9 -> value:113 min: 103 max: 163 pct: 131 threshold: 135.5
+reCenter l[minI]: 7.5 likelyradius 4.4999623
+AutoTrace -> true
+reCenter Done :2020.4832 1092.9042 7.500973
+reCenter on 2023.2991 1107.3829
+pre-threshold 133.75
+threshold at: 2023 1107 radius 8 -> value:110 min: 105 max: 160 pct: 137 threshold: 133.75
+reCenter l[minI]: 7.5 likelyradius 3.7504866
+AutoTrace -> true
+reCenter Done :2024.7958 1107.2863 7.498995
+reCenter on 2029.1036 1121.6522
+pre-threshold 135.25
+threshold at: 2029 1121 radius 8 -> value:114 min: 105 max: 161 pct: 132 threshold: 135.25
+reCenter l[minI]: 7.5 likelyradius 3.7494974
+AutoTrace -> true
+reCenter Done :2030.0902 1121.4889 7.4999056
+reCenter on 2035.3296 1135.544
+pre-threshold 139.0
+threshold at: 2035 1135 radius 8 -> value:117 min: 107 max: 166 pct: 135 threshold: 139.0
+reCenter l[minI]: 10.0 likelyradius 3.7499528
+AutoTrace -> true
+reCenter Done :2034.5403 1133.9231 7.4999056
+reCenter on 2039.5946 1148.0457
+pre-threshold 130.25
+threshold at: 2039 1148 radius 8 -> value:105 min: 102 max: 157 pct: 134 threshold: 130.25
+reCenter l[minI]: 7.0 likelyradius 3.7499528
+AutoTrace -> true
+reCenter Done :2039.8389 1147.992 7.0008597
+reCenter on 2044.7738 1161.0952
+pre-threshold 133.0
+threshold at: 2044 1161 radius 8 -> value:116 min: 102 max: 157 pct: 134 threshold: 133.0
+reCenter l[minI]: 7.0 likelyradius 3.5004299
+AutoTrace -> true
+reCenter Done :2043.5723 1161.4404 7.0005503
+reCenter on 2047.3174 1174.9313
+pre-threshold 137.5
+threshold at: 2047 1174 radius 8 -> value:117 min: 103 max: 165 pct: 134 threshold: 137.5
+reCenter l[minI]: 7.5 likelyradius 3.5002751
+AutoTrace -> true
+reCenter Done :2046.8264 1175.0259 7.4998794
+reCenter on 2050.3206 1189.613
+pre-threshold 134.75
+threshold at: 2050 1189 radius 8 -> value:112 min: 103 max: 162 pct: 136 threshold: 134.75
+reCenter l[minI]: 6.5 likelyradius 3.7499397
+AutoTrace -> true
+reCenter Done :2050.3206 1189.613 6.499529
+reCenter on 2053.3486 1202.2545
+pre-threshold 137.5
+threshold at: 2053 1202 radius 7 -> value:118 min: 104 max: 164 pct: 129 threshold: 137.5
+reCenter l[minI]: 7.0 likelyradius 3.2497644
+AutoTrace -> true
+reCenter Done :2052.6152 1202.4102 6.9983673
+reCenter on 2055.0857 1216.1871
+pre-threshold 137.5
+threshold at: 2055 1216 radius 7 -> value:115 min: 103 max: 166 pct: 136 threshold: 137.5
+reCenter l[minI]: 7.5 likelyradius 3.4991837
+AutoTrace -> true
+reCenter Done :2055.0857 1216.1871 7.498685
+reCenter on 2057.7327 1230.9491
+pre-threshold 135.0
+threshold at: 2057 1230 radius 8 -> value:115 min: 109 max: 158 pct: 141 threshold: 135.0
+reCenter l[minI]: 7.5 likelyradius 3.7493424
+AutoTrace -> true
+reCenter Done :2057.2334 1230.9741 7.498165
+reCenter on 2059.389 1245.8147
+pre-threshold 135.25
+threshold at: 2059 1245 radius 8 -> value:111 min: 104 max: 163 pct: 141 threshold: 135.25
+reCenter l[minI]: 7.0 likelyradius 3.7490826
+AutoTrace -> true
+reCenter Done :2060.139 1245.8019 7.0010223
+reCenter on 2062.8315 1259.5426
+pre-threshold 134.0
+threshold at: 2062 1259 radius 8 -> value:116 min: 104 max: 158 pct: 132 threshold: 134.0
+reCenter l[minI]: 10.0 likelyradius 3.5005112
+AutoTrace -> true
+reCenter Done :2061.3965 1257.5048 9.023472
+reCenter on 2063.3247 1275.4484
+pre-threshold 136.25
+threshold at: 2063 1275 radius 10 -> value:116 min: 105 max: 162 pct: 147 threshold: 136.25
+reCenter l[minI]: 8.0 likelyradius 4.511736
+AutoTrace -> true
+reCenter Done :2062.991 1276.519 7.226235
+reCenter on 2064.1987 1290.921
+pre-threshold 131.5
+threshold at: 2064 1290 radius 8 -> value:108 min: 100 max: 159 pct: 127 threshold: 131.5
+reCenter l[minI]: 11.0 likelyradius 3.6131175
+AutoTrace -> true
+reCenter Done :2065.067 1291.6548 7.226235
+reCenter on 2065.4746 1294.627
+pre-threshold 133.5
+threshold at: 2065 1294 radius 8 -> value:114 min: 100 max: 160 pct: 126 threshold: 133.5
+reCenter l[minI]: 7.5 likelyradius 3.6131175
+AutoTrace -> true
+reCenter Done :2062.65 1294.9597 6.848975
+reCenter on 2060.879 1297.3812
+pre-threshold 135.5
+threshold at: 2060 1297 radius 8 -> value:126 min: 100 max: 158 pct: 140 threshold: 135.5
+reCenter l[minI]: 8.5 likelyradius 3.6131175
+AutoTrace -> true
+reCenter Done :2062.413 1298.664 8.49874
+reCenter on 2061.9697 1315.6556
+pre-threshold 136.75
+threshold at: 2061 1315 radius 9 -> value:113 min: 106 max: 164 pct: 142 threshold: 136.75
+reCenter l[minI]: 7.0 likelyradius 4.24937
+AutoTrace -> true
+reCenter Done :2062.2046 1315.57 7.0002303
+reCenter on 2062.0413 1328.819
+pre-threshold 133.5
+threshold at: 2062 1328 radius 8 -> value:114 min: 104 max: 158 pct: 130 threshold: 133.5
+reCenter l[minI]: 6.5 likelyradius 3.5001152
+AutoTrace -> true
+reCenter Done :2063.5347 1328.9578 6.499069
+reCenter on 2064.8198 1341.8922
+pre-threshold 134.0
+threshold at: 2064 1341 radius 7 -> value:111 min: 107 max: 159 pct: 136 threshold: 134.0
+reCenter l[minI]: 6.5 likelyradius 3.2495346
+AutoTrace -> true
+reCenter Done :2065.3186 1341.8557 6.501721
+reCenter on 2067.1 1354.7366
+pre-threshold 133.25
+threshold at: 2067 1354 radius 7 -> value:115 min: 102 max: 158 pct: 128 threshold: 133.25
+reCenter l[minI]: 10.0 likelyradius 3.2508605
+AutoTrace -> true
+reCenter Done :2066.6016 1354.7922 6.501721
+reCenter on 2067.8848 1367.7322
+pre-threshold 132.25
+threshold at: 2067 1367 radius 7 -> value:117 min: 104 max: 154 pct: 133 threshold: 132.25
+reCenter l[minI]: 6.5 likelyradius 3.2508605
+AutoTrace -> true
+reCenter Done :2065.8896 1367.8767 6.501366
+reCenter on 2065.183 1380.8602
+pre-threshold 129.0
+threshold at: 2065 1380 radius 7 -> value:106 min: 104 max: 153 pct: 133 threshold: 129.0
+reCenter l[minI]: 6.5 likelyradius 3.250683
+AutoTrace -> true
+reCenter Done :2065.6814 1380.9005 6.4986734
+reCenter on 2065.5176 1391.1492
+pre-threshold 130.5
+threshold at: 2065 1391 radius 7 -> value:110 min: 106 max: 153 pct: 125 threshold: 130.5
+reCenter l[minI]: 11.0 likelyradius 3.2493367
+AutoTrace -> true
+reCenter Done :2066.517 1391.1912 6.4986734
+reCenter on 2067.569 1404.1459
+pre-threshold 134.0
+threshold at: 2067 1404 radius 7 -> value:120 min: 106 max: 155 pct: 132 threshold: 134.0
+reCenter l[minI]: 7.5 likelyradius 3.2493367
+AutoTrace -> true
+reCenter Done :2069.067 1404.0635 7.500574
+reCenter on 2071.9817 1418.7787
+pre-threshold 132.0
+threshold at: 2071 1418 radius 8 -> value:105 min: 105 max: 159 pct: 138 threshold: 132.0
+reCenter l[minI]: 7.5 likelyradius 3.750287
+AutoTrace -> true
+reCenter Done :2071.9817 1418.7787 7.498875
+reCenter on 2074.8477 1433.2476
+pre-threshold 133.0
+threshold at: 2074 1433 radius 8 -> value:109 min: 103 max: 160 pct: 126 threshold: 133.0
+reCenter l[minI]: 13.5 likelyradius 3.7494376
+AutoTrace -> true
+reCenter Done :2075.8452 1433.1794 7.498875
+reCenter on 2079.149 1445.494
+pre-threshold 132.75
+threshold at: 2079 1445 radius 8 -> value:112 min: 101 max: 159 pct: 134 threshold: 132.75
+reCenter l[minI]: 8.0 likelyradius 3.7494376
+AutoTrace -> true
+reCenter Done :2080.8828 1445.259 7.998005
+reCenter on 2087.0398 1460.0227
+pre-threshold 132.0
+threshold at: 2087 1460 radius 8 -> value:104 min: 98 max: 163 pct: 124 threshold: 132.0
+reCenter l[minI]: 8.0 likelyradius 3.9990025
+AutoTrace -> true
+reCenter Done :2086.7961 1460.0789 8.001718
+reCenter on 2092.727 1474.9427
+pre-threshold 133.5
+threshold at: 2092 1474 radius 9 -> value:107 min: 103 max: 162 pct: 139 threshold: 133.5
+reCenter l[minI]: 7.0 likelyradius 4.000859
+AutoTrace -> true
+reCenter Done :2094.4385 1474.5762 7.0016956
+reCenter on 2100.9688 1486.9637
+pre-threshold 138.0
+threshold at: 2100 1486 radius 8 -> value:116 min: 104 max: 166 pct: 136 threshold: 138.0
+reCenter l[minI]: 7.5 likelyradius 3.5008478
+AutoTrace -> true
+reCenter Done :2100.0493 1487.3573 7.5011373
+reCenter on 2106.0798 1501.0942
+pre-threshold 135.25
+threshold at: 2106 1501 radius 8 -> value:115 min: 104 max: 161 pct: 135 threshold: 135.25
+reCenter l[minI]: 8.0 likelyradius 3.7505686
+AutoTrace -> true
+reCenter Done :2105.3604 1501.3059 8.001193
+reCenter on 2111.0547 1516.2609
+pre-threshold 133.0
+threshold at: 2111 1516 radius 9 -> value:109 min: 101 max: 161 pct: 134 threshold: 133.0
+reCenter l[minI]: 10.0 likelyradius 4.0005965
+AutoTrace -> true
+reCenter Done :2110.8494 1514.9011 8.001193
+reCenter on 2115.4355 1526.2603
+pre-threshold 134.5
+threshold at: 2115 1526 radius 9 -> value:115 min: 101 max: 161 pct: 139 threshold: 134.5
+reCenter l[minI]: 7.5 likelyradius 4.0005965
+AutoTrace -> true
+reCenter Done :2113.4814 1526.687 7.500834
+reCenter on 2116.7512 1541.328
+pre-threshold 134.25
+threshold at: 2116 1541 radius 8 -> value:114 min: 105 max: 159 pct: 138 threshold: 134.25
+reCenter l[minI]: 8.0 likelyradius 3.750417
+AutoTrace -> true
+reCenter Done :2117.0 1541.3049 7.998553
+reCenter on 2120.7437 1556.8578
+pre-threshold 136.75
+threshold at: 2120 1556 radius 8 -> value:120 min: 107 max: 160 pct: 136 threshold: 136.75
+reCenter l[minI]: 7.5 likelyradius 3.9992764
+AutoTrace -> true
+reCenter Done :2119.2473 1556.9592 7.49861
+reCenter on 2120.988 1569.085
+pre-threshold 132.0
+threshold at: 2120 1569 radius 8 -> value:117 min: 101 max: 155 pct: 137 threshold: 132.0
+reCenter l[minI]: 7.5 likelyradius 3.749305
+AutoTrace -> true
+reCenter Done :2122.488 1569.0619 7.500889
+reCenter on 2126.3684 1583.5531
+pre-threshold 133.25
+threshold at: 2126 1583 radius 8 -> value:117 min: 106 max: 155 pct: 136 threshold: 133.25
+reCenter l[minI]: 8.0 likelyradius 3.7504444
+AutoTrace -> true
+reCenter Done :2129.0942 1583.1852 8.001595
+reCenter on 2135.8748 1597.6809
+pre-threshold 133.0
+threshold at: 2135 1597 radius 9 -> value:107 min: 101 max: 162 pct: 127 threshold: 133.0
+reCenter l[minI]: 8.0 likelyradius 4.0007973
+AutoTrace -> true
+reCenter Done :2135.412 1596.5339 7.6231117
+reCenter on 2141.9343 1610.3146
+pre-threshold 134.75
+threshold at: 2141 1610 radius 8 -> value:112 min: 109 max: 159 pct: 134 threshold: 134.75
+reCenter l[minI]: 7.5 likelyradius 3.8115559
+AutoTrace -> true
+reCenter Done :2142.8884 1610.0153 7.499625
+reCenter on 2150.1628 1623.1324
+pre-threshold 133.75
+threshold at: 2150 1623 radius 8 -> value:115 min: 104 max: 158 pct: 132 threshold: 133.75
+reCenter l[minI]: 7.5 likelyradius 3.7498126
+AutoTrace -> true
+reCenter Done :2151.092 1622.7626 7.500996
+reCenter on 2159.2107 1635.3779
+pre-threshold 132.75
+threshold at: 2159 1635 radius 8 -> value:120 min: 101 max: 155 pct: 128 threshold: 132.75
+reCenter l[minI]: 8.0 likelyradius 3.750498
+AutoTrace -> true
+reCenter Done :2158.5337 1635.7004 7.9996195
+reCenter on 2166.5107 1649.5692
+pre-threshold 134.75
+threshold at: 2166 1649 radius 8 -> value:115 min: 100 max: 162 pct: 128 threshold: 134.75
+reCenter l[minI]: 8.5 likelyradius 3.9998097
+AutoTrace -> true
+reCenter Done :2165.3423 1648.8447 8.103195
+reCenter on 2172.7964 1663.2351
+pre-threshold 131.75
+threshold at: 2172 1663 radius 9 -> value:116 min: 99 max: 156 pct: 131 threshold: 131.75
+reCenter l[minI]: 8.5 likelyradius 4.0515976
+AutoTrace -> true
+reCenter Done :2173.5227 1664.2825 8.10912
+reCenter on 2181.1165 1678.613
+pre-threshold 131.0
+threshold at: 2181 1678 radius 9 -> value:117 min: 99 max: 154 pct: 130 threshold: 131.0
+reCenter l[minI]: 7.0 likelyradius 4.05456
+AutoTrace -> true
+reCenter Done :2180.7063 1677.6189 6.6791625
+reCenter on 2187.0413 1689.3796
+pre-threshold 131.75
+threshold at: 2187 1689 radius 7 -> value:113 min: 102 max: 156 pct: 122 threshold: 131.75
+reCenter l[minI]: 7.5 likelyradius 3.3395813
+AutoTrace -> true
+reCenter Done :2187.0413 1689.3796 7.4985766
+reCenter on 2194.1533 1702.5831
+pre-threshold 133.0
+threshold at: 2194 1702 radius 8 -> value:118 min: 104 max: 155 pct: 127 threshold: 133.0
+reCenter l[minI]: 7.5 likelyradius 3.7492883
+AutoTrace -> true
+reCenter Done :2195.087 1702.2245 7.5008755
+reCenter on 2203.0503 1714.9381
+pre-threshold 136.75
+threshold at: 2203 1714 radius 8 -> value:120 min: 103 max: 162 pct: 124 threshold: 136.75
+reCenter l[minI]: 7.5 likelyradius 3.7504377
+AutoTrace -> true
+reCenter Done :2203.5044 1714.7288 7.5004873
+reCenter on 2211.8813 1727.1729
+pre-threshold 132.5
+threshold at: 2211 1727 radius 8 -> value:112 min: 102 max: 158 pct: 132 threshold: 132.5
+reCenter l[minI]: 8.0 likelyradius 3.7502437
+AutoTrace -> true
+reCenter Done :2212.999 1726.6123 8.002084
+reCenter on 2222.989 1739.1157
+pre-threshold 131.5
+threshold at: 2222 1739 radius 9 -> value:112 min: 98 max: 158 pct: 132 threshold: 131.5
+reCenter l[minI]: 8.5 likelyradius 4.001042
+AutoTrace -> true
+reCenter Done :2224.0354 1739.7766 7.623945
+reCenter on 2233.8315 1751.4614
+pre-threshold 131.25
+threshold at: 2233 1751 radius 8 -> value:117 min: 98 max: 155 pct: 124 threshold: 131.25
+reCenter l[minI]: 7.5 likelyradius 3.8119726
+AutoTrace -> true
+reCenter Done :2233.4077 1751.7268 7.500859
+reCenter on 2242.6655 1763.5311
+pre-threshold 132.0
+threshold at: 2242 1763 radius 8 -> value:118 min: 102 max: 154 pct: 130 threshold: 132.0
+reCenter l[minI]: 7.0 likelyradius 3.7504294
+AutoTrace -> true
+reCenter Done :2241.5918 1764.1711 6.9990015
+reCenter on 2249.2834 1775.8666
+pre-threshold 132.0
+threshold at: 2249 1775 radius 7 -> value:118 min: 100 max: 155 pct: 123 threshold: 132.0
+reCenter l[minI]: 7.5 likelyradius 3.4995008
+AutoTrace -> true
+reCenter Done :2248.845 1776.1069 7.500552
+reCenter on 2255.7258 1787.4302
+pre-threshold 132.25
+threshold at: 2255 1787 radius 8 -> value:111 min: 98 max: 160 pct: 130 threshold: 132.25
+reCenter l[minI]: 7.5 likelyradius 3.750276
+AutoTrace -> true
+reCenter Done :2253.8987 1788.2432 7.4992843
+reCenter on 2259.6643 1802.0892
+pre-threshold 132.0
+threshold at: 2259 1802 radius 8 -> value:116 min: 100 max: 156 pct: 130 threshold: 132.0
+reCenter l[minI]: 7.5 likelyradius 3.7496421
+AutoTrace -> true
+reCenter Done :2259.6643 1802.0892 7.4988723
+reCenter on 2265.4297 1815.9346
+pre-threshold 132.75
+threshold at: 2265 1815 radius 8 -> value:115 min: 104 max: 156 pct: 132 threshold: 132.75
+reCenter l[minI]: 8.0 likelyradius 3.7494361
+AutoTrace -> true
+reCenter Done :2265.1885 1816.0006 7.9988127
+reCenter on 2271.0925 1830.8689
+pre-threshold 132.0
+threshold at: 2271 1830 radius 8 -> value:112 min: 100 max: 158 pct: 122 threshold: 132.0
+reCenter l[minI]: 10.5 likelyradius 3.9994063
+AutoTrace -> true
+reCenter Done :2270.0576 1829.2406 9.55658
+reCenter on 2276.6548 1847.1792
+pre-threshold 133.25
+threshold at: 2276 1847 radius 10 -> value:111 min: 104 max: 159 pct: 138 threshold: 133.25
+reCenter l[minI]: 9.0 likelyradius 4.77829
+AutoTrace -> true
+reCenter Done :2277.274 1846.7559 9.001825
+reCenter on 2284.132 1863.4021
+pre-threshold 135.75
+threshold at: 2284 1863 radius 10 -> value:114 min: 99 max: 165 pct: 139 threshold: 135.75
+reCenter l[minI]: 8.5 likelyradius 4.5009127
+AutoTrace -> true
+reCenter Done :2284.0928 1862.156 8.187285
+reCenter on 2290.7222 1877.1285
+pre-threshold 128.5
+threshold at: 2290 1877 radius 9 -> value:107 min: 89 max: 159 pct: 132 threshold: 128.5
+reCenter l[minI]: 7.5 likelyradius 4.0936427
+AutoTrace -> true
+reCenter Done :2290.7222 1877.1285 7.5013595
+reCenter on 2296.7961 1890.8467
+pre-threshold 130.25
+threshold at: 2296 1890 radius 8 -> value:110 min: 101 max: 155 pct: 133 threshold: 130.25
+reCenter l[minI]: 7.5 likelyradius 3.7506797
+AutoTrace -> true
+reCenter Done :2297.7546 1890.5615 7.5003424
+reCenter on 2304.7122 1903.8512
+pre-threshold 135.75
+threshold at: 2304 1903 radius 8 -> value:111 min: 104 max: 164 pct: 134 threshold: 135.75
+reCenter l[minI]: 7.5 likelyradius 3.7501712
+AutoTrace -> true
+reCenter Done :2305.6497 1903.5038 7.4984627
+reCenter on 2313.4597 1916.3066
+pre-threshold 137.25
+threshold at: 2313 1916 radius 8 -> value:121 min: 106 max: 161 pct: 130 threshold: 137.25
+reCenter l[minI]: 7.5 likelyradius 3.7492313
+AutoTrace -> true
+reCenter Done :2313.4597 1916.3066 7.5013337
+reCenter on 2321.2727 1929.1144
+pre-threshold 136.25
+threshold at: 2321 1929 radius 8 -> value:113 min: 106 max: 163 pct: 127 threshold: 136.25
+reCenter l[minI]: 8.0 likelyradius 3.7506669
+AutoTrace -> true
+reCenter Done :2321.9575 1928.8083 8.000675
+reCenter on 2330.953 1942.042
+pre-threshold 132.5
+threshold at: 2330 1942 radius 9 -> value:107 min: 101 max: 161 pct: 135 threshold: 132.5
+reCenter l[minI]: 8.0 likelyradius 4.0003376
+AutoTrace -> true
+reCenter Done :2331.0784 1941.8257 8.000554
+reCenter on 2340.2603 1954.9302
+pre-threshold 132.5
+threshold at: 2340 1954 radius 9 -> value:116 min: 100 max: 157 pct: 132 threshold: 132.5
+reCenter l[minI]: 7.5 likelyradius 4.000277
+AutoTrace -> true
+reCenter Done :2340.7122 1954.7161 7.5011377
+reCenter on 2349.693 1966.733
+pre-threshold 138.75
+threshold at: 2349 1966 radius 8 -> value:117 min: 100 max: 169 pct: 128 threshold: 138.75
+reCenter l[minI]: 8.5 likelyradius 3.7505689
+AutoTrace -> true
+reCenter Done :2348.8225 1967.225 8.499687
+reCenter on 2358.0706 1981.4886
+pre-threshold 134.25
+threshold at: 2358 1981 radius 9 -> value:119 min: 100 max: 159 pct: 138 threshold: 134.25
+reCenter l[minI]: 7.0 likelyradius 4.2498436
+AutoTrace -> true
+reCenter Done :2357.3716 1981.7603 6.999649
+reCenter on 2364.4688 1993.8271
+pre-threshold 134.25
+threshold at: 2364 1993 radius 7 -> value:115 min: 98 max: 162 pct: 123 threshold: 134.25
+reCenter l[minI]: 8.5 likelyradius 3.4998245
+AutoTrace -> true
+reCenter Done :2363.5688 1994.2632 6.999649
+reCenter on 2369.786 2006.8062
+pre-threshold 136.5
+threshold at: 2369 2006 radius 7 -> value:118 min: 100 max: 164 pct: 123 threshold: 136.5
+reCenter l[minI]: 8.0 likelyradius 3.4998245
+AutoTrace -> true
+reCenter Done :2369.0894 2007.0841 7.9994097
+reCenter on 2375.4165 2021.7786
+pre-threshold 133.0
+threshold at: 2375 2021 radius 8 -> value:111 min: 103 max: 159 pct: 131 threshold: 133.0
+reCenter l[minI]: 8.0 likelyradius 3.9997048
+AutoTrace -> true
+reCenter Done :2375.9087 2021.2126 8.000667
+reCenter on 2382.8643 2035.6232
+pre-threshold 131.0
+threshold at: 2382 2035 radius 9 -> value:111 min: 101 max: 156 pct: 135 threshold: 131.0
+reCenter l[minI]: 8.0 likelyradius 4.0003333
+AutoTrace -> true
+reCenter Done :2383.3315 2035.0366 7.99864
+reCenter on 2390.8994 2049.1306
+pre-threshold 131.25
+threshold at: 2390 2049 radius 8 -> value:117 min: 100 max: 154 pct: 131 threshold: 131.25
+reCenter l[minI]: 7.5 likelyradius 3.99932
+AutoTrace -> true
+reCenter Done :2390.4255 2049.29 7.4994764
+reCenter on 2397.1086 2062.7178
+pre-threshold 134.25
+threshold at: 2397 2062 radius 8 -> value:117 min: 104 max: 158 pct: 131 threshold: 134.25
+reCenter l[minI]: 8.0 likelyradius 3.7497382
+AutoTrace -> true
+reCenter Done :2397.3447 2062.6357 8.001666
+reCenter on 2404.7107 2076.843
+pre-threshold 133.5
+threshold at: 2404 2076 radius 9 -> value:117 min: 103 max: 157 pct: 134 threshold: 133.5
+reCenter l[minI]: 8.0 likelyradius 4.000833
+AutoTrace -> true
+reCenter Done :2404.9487 2076.7668 8.001637
+reCenter on 2412.532 2090.8594
+pre-threshold 136.5
+threshold at: 2412 2090 radius 9 -> value:117 min: 105 max: 162 pct: 133 threshold: 136.5
+reCenter l[minI]: 9.5 likelyradius 4.0008187
+AutoTrace -> true
+reCenter Done :2413.5327 2091.8193 8.577299
+reCenter on 2422.0308 2106.7212
+pre-threshold 134.25
+threshold at: 2422 2106 radius 9 -> value:117 min: 104 max: 158 pct: 134 threshold: 134.25
+reCenter l[minI]: 8.0 likelyradius 4.2886496
+AutoTrace -> true
+reCenter Done :2421.1958 2105.9163 7.6705556
+reCenter on 2428.5227 2119.3945
+pre-threshold 133.75
+threshold at: 2428 2119 radius 8 -> value:119 min: 102 max: 157 pct: 127 threshold: 133.75
+reCenter l[minI]: 8.0 likelyradius 3.8352778
+AutoTrace -> true
+reCenter Done :2428.757 2119.3074 8.001804
+reCenter on 2436.6257 2133.243
+pre-threshold 134.0
+threshold at: 2436 2133 radius 9 -> value:118 min: 100 max: 159 pct: 135 threshold: 134.0
+reCenter l[minI]: 8.0 likelyradius 4.000902
+AutoTrace -> true
+reCenter Done :2435.4497 2133.666 7.9989953
+reCenter on 2442.2083 2148.1663
+pre-threshold 130.25
+threshold at: 2442 2148 radius 8 -> value:113 min: 96 max: 156 pct: 127 threshold: 130.25
+reCenter l[minI]: 7.5 likelyradius 3.9994977
+AutoTrace -> true
+reCenter Done :2441.726 2148.2986 7.4998407
+reCenter on 2447.639 2162.0837
+pre-threshold 130.25
+threshold at: 2447 2162 radius 8 -> value:113 min: 98 max: 155 pct: 127 threshold: 130.25
+reCenter l[minI]: 8.0 likelyradius 3.7499204
+AutoTrace -> true
+reCenter Done :2446.918 2162.2896 7.998336
+reCenter on 2452.4834 2177.2869
+pre-threshold 129.0
+threshold at: 2452 2177 radius 8 -> value:107 min: 97 max: 156 pct: 131 threshold: 129.0
+reCenter l[minI]: 7.5 likelyradius 3.999168
+AutoTrace -> true
+reCenter Done :2453.4436 2178.062 7.1522045
+reCenter on 2458.9124 2191.2798
+pre-threshold 132.0
+threshold at: 2458 2191 radius 8 -> value:110 min: 98 max: 160 pct: 131 threshold: 132.0
+reCenter l[minI]: 8.0 likelyradius 3.5761023
+AutoTrace -> true
+reCenter Done :2458.6733 2191.353 7.99827
+reCenter on 2464.5305 2206.2388
+pre-threshold 133.75
+threshold at: 2464 2206 radius 8 -> value:118 min: 91 max: 163 pct: 132 threshold: 133.75
+reCenter l[minI]: 8.5 likelyradius 3.999135
+AutoTrace -> true
+reCenter Done :2464.1907 2206.6055 8.499355
+reCenter on 2469.973 2222.5906
+pre-threshold 132.0
+threshold at: 2469 2222 radius 9 -> value:112 min: 90 max: 163 pct: 138 threshold: 132.0
+reCenter l[minI]: 8.0 likelyradius 4.2496777
+AutoTrace -> true
+reCenter Done :2468.4062 2222.0525 7.697752
+reCenter on 2472.4595 2236.9048
+pre-threshold 134.25
+threshold at: 2472 2236 radius 8 -> value:115 min: 96 max: 163 pct: 131 threshold: 134.25
+reCenter l[minI]: 8.5 likelyradius 3.848876
+AutoTrace -> true
+reCenter Done :2471.9631 2236.9656 8.501009
+reCenter on 2475.9077 2253.5037
+pre-threshold 133.0
+threshold at: 2475 2253 radius 9 -> value:112 min: 98 max: 161 pct: 137 threshold: 133.0
+reCenter l[minI]: 8.0 likelyradius 4.2505045
+AutoTrace -> true
+reCenter Done :2477.3423 2252.5015 8.000975
+reCenter on 2482.578 2267.6226
+pre-threshold 131.75
+threshold at: 2482 2267 radius 9 -> value:117 min: 96 max: 157 pct: 136 threshold: 131.75
+reCenter l[minI]: 8.0 likelyradius 4.0004873
+AutoTrace -> true
+reCenter Done :2481.8381 2267.7456 7.9990387
+reCenter on 2486.3635 2283.0903
+pre-threshold 134.5
+threshold at: 2486 2283 radius 8 -> value:118 min: 100 max: 160 pct: 130 threshold: 134.5
+reCenter l[minI]: 8.5 likelyradius 3.9995193
+AutoTrace -> true
+reCenter Done :2485.867 2283.1494 8.501435
+reCenter on 2490.1692 2299.5989
+pre-threshold 133.25
+threshold at: 2490 2299 radius 9 -> value:116 min: 93 max: 162 pct: 135 threshold: 133.25
+reCenter l[minI]: 8.5 likelyradius 4.2507176
+AutoTrace -> true
+reCenter Done :2490.576 2300.7456 8.143247
+reCenter on 2494.7864 2316.4785
+pre-threshold 130.0
+threshold at: 2494 2316 radius 9 -> value:112 min: 90 max: 159 pct: 134 threshold: 130.0
+reCenter l[minI]: 8.5 likelyradius 4.0716233
+AutoTrace -> true
+reCenter Done :2493.4258 2315.6616 8.134622
+reCenter on 2496.479 2331.6418
+pre-threshold 128.25
+threshold at: 2496 2331 radius 9 -> value:112 min: 97 max: 152 pct: 135 threshold: 128.25
+reCenter l[minI]: 8.5 likelyradius 4.067311
+AutoTrace -> true
+reCenter Done :2496.416 2332.9956 8.118261
+reCenter on 2499.1763 2348.9958
+pre-threshold 128.5
+threshold at: 2499 2348 radius 9 -> value:112 min: 92 max: 155 pct: 134 threshold: 128.5
+reCenter l[minI]: 8.0 likelyradius 4.0591307
+AutoTrace -> true
+reCenter Done :2497.9263 2348.9873 8.000187
+reCenter on 2499.4307 2364.9167
+pre-threshold 129.0
+threshold at: 2499 2364 radius 9 -> value:106 min: 92 max: 159 pct: 132 threshold: 129.0
+reCenter l[minI]: 9.0 likelyradius 4.0000935
+AutoTrace -> true
+reCenter Done :2499.9788 2366.1897 8.575873
+reCenter on 2502.0107 2383.2207
+pre-threshold 126.25
+threshold at: 2502 2383 radius 9 -> value:112 min: 91 max: 151 pct: 134 threshold: 126.25
+reCenter l[minI]: 8.5 likelyradius 4.2879367
+AutoTrace -> true
+reCenter Done :2502.0107 2383.2207 8.500988
+reCenter on 2504.025 2400.103
+pre-threshold 123.5
+threshold at: 2504 2400 radius 9 -> value:102 min: 90 max: 151 pct: 133 threshold: 123.5
+reCenter l[minI]: 8.0 likelyradius 4.250494
+AutoTrace -> true
+reCenter Done :2504.9663 2398.739 7.699081
+reCenter on 2507.3518 2411.264
+pre-threshold 125.5
+threshold at: 2507 2411 radius 8 -> value:109 min: 93 max: 150 pct: 123 threshold: 125.5
+reCenter l[minI]: 8.0 likelyradius 3.8495405
+AutoTrace -> true
+reCenter Done :2505.6035 2411.3408 7.999916
+reCenter on 2506.4116 2427.3203
+pre-threshold 126.25
+threshold at: 2506 2427 radius 8 -> value:111 min: 90 max: 152 pct: 119 threshold: 126.25
+reCenter l[minI]: 8.5 likelyradius 3.999958
+AutoTrace -> true
+reCenter Done :2505.4185 2427.2026 8.5009165
+reCenter on 2505.2202 2444.2034
+pre-threshold 126.0
+threshold at: 2505 2444 radius 9 -> value:110 min: 88 max: 153 pct: 130 threshold: 126.0
+reCenter l[minI]: 9.0 likelyradius 4.2504582
+AutoTrace -> true
+reCenter Done :2505.3647 2442.9014 8.624724
+reCenter on 2505.3057 2460.1506
+pre-threshold 125.0
+threshold at: 2505 2460 radius 9 -> value:108 min: 86 max: 153 pct: 131 threshold: 125.0
+reCenter l[minI]: 8.5 likelyradius 4.312362
+AutoTrace -> true
+reCenter Done :2505.3057 2460.1506 8.499287
+reCenter on 2505.2476 2477.1492
+pre-threshold 125.75
+threshold at: 2505 2477 radius 9 -> value:115 min: 92 max: 148 pct: 131 threshold: 125.75
+reCenter l[minI]: 8.5 likelyradius 4.2496433
+AutoTrace -> true
+reCenter Done :2504.7583 2477.046 8.500599
+reCenter on 2504.2078 2494.038
+pre-threshold 126.25
+threshold at: 2504 2494 radius 9 -> value:116 min: 97 max: 146 pct: 132 threshold: 126.25
+reCenter l[minI]: 8.5 likelyradius 4.2502995
+AutoTrace -> true
+reCenter Done :2504.272 2495.252 8.146453
+reCenter on 2503.837 2511.539
+pre-threshold 127.0
+threshold at: 2503 2511 radius 9 -> value:112 min: 90 max: 153 pct: 130 threshold: 127.0
+reCenter l[minI]: 9.0 likelyradius 4.0732265
+AutoTrace -> true
+reCenter Done :2503.4697 2510.226 8.593174
+reCenter on 2502.5503 2527.3877
+pre-threshold 125.25
+threshold at: 2502 2527 radius 9 -> value:110 min: 95 max: 148 pct: 127 threshold: 125.25
+reCenter l[minI]: 8.5 likelyradius 4.296587
+AutoTrace -> true
+reCenter Done :2503.003 2526.1733 8.158573
+reCenter on 2502.5254 2542.4834
+pre-threshold 122.0
+threshold at: 2502 2542 radius 9 -> value:106 min: 90 max: 146 pct: 126 threshold: 122.0
+reCenter l[minI]: 8.5 likelyradius 4.0792866
+AutoTrace -> true
+reCenter Done :2502.0364 2542.3792 8.499846
+reCenter on 2501.0242 2559.3486
+pre-threshold 122.0
+threshold at: 2501 2559 radius 9 -> value:110 min: 92 max: 143 pct: 126 threshold: 122.0
+reCenter l[minI]: 9.5 likelyradius 4.249923
+AutoTrace -> true
+reCenter Done :2501.0242 2559.3486 9.498242
+reCenter on 2499.893 2578.3115
+pre-threshold 117.25
+threshold at: 2499 2578 radius 10 -> value:92 min: 87 max: 145 pct: 132 threshold: 117.25
+reCenter l[minI]: 8.0 likelyradius 4.749121
+AutoTrace -> true
+reCenter Done :2501.1199 2578.0703 8.001689
+reCenter on 2501.2017 2594.0735
+pre-threshold 122.0
+threshold at: 2501 2594 radius 9 -> value:109 min: 91 max: 144 pct: 124 threshold: 122.0
+reCenter l[minI]: 8.5 likelyradius 4.0008445
+AutoTrace -> true
+reCenter Done :2501.695 2594.1548 8.501241
+reCenter on 2502.3027 2611.1465
+pre-threshold 117.25
+threshold at: 2502 2611 radius 9 -> value:98 min: 89 max: 141 pct: 125 threshold: 117.25
+reCenter l[minI]: 8.0 likelyradius 4.2506204
+AutoTrace -> true
+reCenter Done :2503.6304 2612.1387 7.6990566
+reCenter on 2504.8875 2623.8213
+pre-threshold 124.5
+threshold at: 2504 2623 radius 8 -> value:114 min: 90 max: 147 pct: 118 threshold: 124.5
+reCenter l[minI]: 9.5 likelyradius 3.8495283
+AutoTrace -> true
+reCenter Done :2504.3877 2623.8027 9.502148
+reCenter on 2505.619 2642.767
+pre-threshold 121.25
+threshold at: 2505 2642 radius 10 -> value:105 min: 88 max: 146 pct: 133 threshold: 121.25
+reCenter l[minI]: 5.5 likelyradius 4.751074
+AutoTrace -> true
+reCenter Done :2504.9707 2643.7747 3.937708
+reCenter on 2505.2004 2651.6467
+pre-threshold 117.25
+threshold at: 2505 2651 radius 4 -> value:96 min: 91 max: 141 pct: 121 threshold: 117.25
+reCenter l[minI]: 5.5 likelyradius 1.968854
+AutoTrace -> true
+reCenter Done :2505.5642 2651.9897 3.937708
+reCenter on 2506.1316 2659.8447
+pre-threshold 115.25
+threshold at: 2506 2659 radius 4 -> value:91 min: 84 max: 143 pct: 123 threshold: 115.25
+reCenter l[minI]: 4.5 likelyradius 1.968854
+AutoTrace -> true
+reCenter Done :2506.5098 2660.1719 4.5005584
+reCenter on 2507.543 2669.1135
+pre-threshold 118.25
+threshold at: 2507 2669 radius 5 -> value:101 min: 90 max: 141 pct: 122 threshold: 118.25
+reCenter l[minI]: 5.0 likelyradius 2.2502792
+AutoTrace -> true
+reCenter Done :2508.1309 2669.5793 5.0000157
+reCenter on 2509.829 2679.434
+pre-threshold 115.5
+threshold at: 2509 2679 radius 6 -> value:91 min: 81 max: 145 pct: 111 threshold: 115.5
+reCenter l[minI]: 4.0 likelyradius 2.5000079
+AutoTrace -> true
+reCenter Done :2508.6646 2679.8887 4.0006537
+reCenter on 2509.0781 2687.8794
+pre-threshold 113.0
+threshold at: 2509 2687 radius 5 -> value:84 min: 78 max: 145 pct: 110 threshold: 113.0
+reCenter l[minI]: 10.0 likelyradius 2.0003269
+AutoTrace -> true
+reCenter Done :2508.5217 2687.378 4.0006537
+reCenter on 2508.4407 2691.6272
+pre-threshold 115.5
+threshold at: 2508 2691 radius 5 -> value:104 min: 78 max: 140 pct: 118 threshold: 115.5
+reCenter l[minI]: 5.5 likelyradius 2.0003269
+AutoTrace -> true
+reCenter Done :2509.134 2692.348 4.0006537
+reCenter on 2509.8982 2698.551
+pre-threshold 122.0
+threshold at: 2509 2698 radius 5 -> value:104 min: 100 max: 142 pct: 119 threshold: 122.0
+reCenter l[minI]: 10.5 likelyradius 2.0003269
+AutoTrace -> true
+reCenter Done :2509.3076 2698.09 4.0006537
+reCenter on 2509.4663 2703.3376
+pre-threshold 123.5
+threshold at: 2509 2703 radius 5 -> value:106 min: 104 max: 142 pct: 120 threshold: 123.5
+reCenter l[minI]: 9.0 likelyradius 2.0003269
+AutoTrace -> true
+reCenter Done :2509.2847 2703.1665 4.0006537
+reCenter on 2509.271 2706.1665
+pre-threshold 125.0
+threshold at: 2509 2706 radius 5 -> value:112 min: 104 max: 142 pct: 124 threshold: 125.0
+reCenter l[minI]: 7.5 likelyradius 2.0003269
+AutoTrace -> true
+reCenter Done :2508.7427 2705.6333 4.0006537
+AutobuildFromNode: findEnd
+findEnd 1
+pre-threshold 123.5
+threshold at: 2509 2703 radius 5 -> value:106 min: 104 max: 142 pct: 120 threshold: 123.5
+maxL: 7.499997 at 2510.9783 2710.4724 dist = 7.499639
+findEnd Done
+AutobuildFromNode: findEnd -> 2
+There are no instances of RootImageCanvas
+There is one instance of RootImageCanvas
+pix = 83.96635
+pix = 96.655846
+pix = 96.91063
+pix = 96.65158
+pix = 108.87845
+pix = 111.25
+pix = 106.82553
+pix = 105.17449
+pix = 99.847145
+pix = 105.04126
+pix = 109.607544
+pix = 104.728516
+pix = 114.44182
+pix = 112.75059
+pix = 112.75961
+pix = 109.46228
+pix = 104.72737
+pix = 112.64811
+pix = 105.9137
+pix = 110.52869
+pix = 105.56608
+pix = 105.99451
+pix = 109.23719
+pix = 110.45315
+pix = 110.77726
+pix = 112.59792
+pix = 111.30178
+pix = 113.05244
+pix = 114.99581
+pix = 114.53493
+pix = 121.76468
+pix = 110.35223
+pix = 109.49051
+pix = 111.55214
+pix = 114.35057
+pix = 114.09662
+pix = 109.21045
+pix = 112.993164
+pix = 117.87295
+pix = 113.92792
+pix = 114.16485
+pix = 115.58353
+pix = 113.97931
+pix = 117.0041
+pix = 112.18255
+pix = 115.469536
+pix = 118.23446
+pix = 117.33915
+pix = 113.866455
+pix = 112.91162
+pix = 114.99536
+pix = 110.90259
+pix = 113.63094
+pix = 114.33073
+pix = 117.2041
+pix = 110.77749
+pix = 113.5083
+pix = 113.70662
+pix = 103.151855
+pix = 117.39287
+pix = 116.8718
+pix = 110.244385
+pix = 110.22754
+pix = 115.41495
+pix = 114.30493
+pix = 117.504715
+pix = 117.026886
+pix = 116.51096
+pix = 111.14683
+pix = 114.68224
+pix = 116.454956
+pix = 114.07377
+pix = 115.400314
+pix = 115.62495
+pix = 117.286736
+pix = 113.391106
+pix = 115.72672
+pix = 118.8608
+pix = 117.60893
+pix = 115.96899
+pix = 116.56953
+pix = 115.2266
+pix = 115.48354
+pix = 111.88556
+pix = 116.0
+pix = 114.75246
+pix = 110.524956
+pix = 113.66466
+pix = 113.40538
+pix = 110.303734
+pix = 116.77743
+pix = 115.00491
+pix = 120.73017
+pix = 118.56975
+pix = 117.29007
+pix = 118.44422
+pix = 116.96007
+pix = 115.4624
+pix = 115.24818
+pix = 119.59676
+pix = 114.5571
+pix = 117.27562
+pix = 115.39015
+pix = 116.83456
+pix = 118.33711
+pix = 114.85015
+pix = 117.85515
+pix = 119.142334
+pix = 115.93388
+pix = 113.159645
+pix = 111.74679
+pix = 114.993004
+pix = 110.44977
+pix = 115.96468
+pix = 111.437416
+pix = 115.74946
+pix = 115.342285
+pix = 116.33391
+pix = 117.01953
+pix = 112.94889
+pix = 112.77061
+pix = 110.993774
+pix = 109.789635
+pix = 117.92785
+pix = 111.98089
+pix = 111.32862
+pix = 114.6781
+pix = 110.79736
+pix = 110.458984
+pix = 108.720314
+pix = 113.65228
+pix = 113.29899
+pix = 110.33348
+pix = 110.17041
+pix = 105.958626
+pix = 109.91907
+pix = 106.13609
+pix = 111.03801
+pix = 110.18164
+pix = 117.12916
+pix = 101.18527
+pix = 105.74553
+pix = 99.34985
+pix = 95.17005
+pix = 91.59621
+pix = 90.652435
+pix = 102.020996
+pix = 107.22864
+pix = 106.94786
+There are no instances of RootImageCanvas
+There is one instance of RootImageCanvas
+pix = 83.96635
+pix = 96.655846
+pix = 96.91063
+pix = 96.65158
+pix = 108.87845
+pix = 111.25
+pix = 106.82553
+pix = 105.17449
+pix = 99.847145
+pix = 105.04126
+pix = 109.607544
+pix = 104.728516
+pix = 114.44182
+pix = 112.75059
+pix = 112.75961
+pix = 109.46228
+pix = 104.72737
+pix = 112.64811
+pix = 105.9137
+pix = 110.52869
+pix = 105.56608
+pix = 105.99451
+pix = 109.23719
+pix = 110.45315
+pix = 110.77726
+pix = 112.59792
+pix = 111.30178
+pix = 113.05244
+pix = 114.99581
+pix = 114.53493
+pix = 121.76468
+pix = 110.35223
+pix = 109.49051
+pix = 111.55214
+pix = 114.35057
+pix = 114.09662
+pix = 109.21045
+pix = 112.993164
+pix = 117.87295
+pix = 113.92792
+pix = 114.16485
+pix = 115.58353
+pix = 113.97931
+pix = 117.0041
+pix = 112.18255
+pix = 115.469536
+pix = 118.23446
+pix = 117.33915
+pix = 113.866455
+pix = 112.91162
+pix = 114.99536
+pix = 110.90259
+pix = 113.63094
+pix = 114.33073
+pix = 117.2041
+pix = 110.77749
+pix = 113.5083
+pix = 113.70662
+pix = 103.151855
+pix = 117.39287
+pix = 116.8718
+pix = 110.244385
+pix = 110.22754
+pix = 115.41495
+pix = 114.30493
+pix = 117.504715
+pix = 117.026886
+pix = 116.51096
+pix = 111.14683
+pix = 114.68224
+pix = 116.454956
+pix = 114.07377
+pix = 115.400314
+pix = 115.62495
+pix = 117.286736
+pix = 113.391106
+pix = 115.72672
+pix = 118.8608
+pix = 117.60893
+pix = 115.96899
+pix = 116.56953
+pix = 115.2266
+pix = 115.48354
+pix = 111.88556
+pix = 116.0
+pix = 114.75246
+pix = 110.524956
+pix = 113.66466
+pix = 113.40538
+pix = 110.303734
+pix = 116.77743
+pix = 115.00491
+pix = 120.73017
+pix = 118.56975
+pix = 117.29007
+pix = 118.44422
+pix = 116.96007
+pix = 115.4624
+pix = 115.24818
+pix = 119.59676
+pix = 114.5571
+pix = 117.27562
+pix = 115.39015
+pix = 116.83456
+pix = 118.33711
+pix = 114.85015
+pix = 117.85515
+pix = 119.142334
+pix = 115.93388
+pix = 113.159645
+pix = 111.74679
+pix = 114.993004
+pix = 110.44977
+pix = 115.96468
+pix = 111.437416
+pix = 115.74946
+pix = 115.342285
+pix = 116.33391
+pix = 117.01953
+pix = 112.94889
+pix = 112.77061
+pix = 110.993774
+pix = 109.789635
+pix = 117.92785
+pix = 111.98089
+pix = 111.32862
+pix = 114.6781
+pix = 110.79736
+pix = 110.458984
+pix = 108.720314
+pix = 113.65228
+pix = 113.29899
+pix = 110.33348
+pix = 110.17041
+pix = 105.958626
+pix = 109.91907
+pix = 106.13609
+pix = 111.03801
+pix = 110.18164
+pix = 117.12916
+pix = 101.18527
+pix = 105.74553
+pix = 99.34985
+pix = 95.17005
+pix = 91.59621
+pix = 90.652435
+pix = 102.020996
+pix = 107.22864
+pix = 106.94786
+There are no instances of RootImageCanvas

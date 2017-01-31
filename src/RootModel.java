@@ -3706,7 +3706,9 @@ class RootModel extends WindowAdapter implements TreeModel{
     */
   public void saveToRSML(String fName){
       FileWriter dataOut;
-
+      
+      fit.checkImageProcessor();
+      
       fName = fName.substring(0, fName.lastIndexOf('.')+1);
 
       int j = fileSuffixRSML.length - 1;
@@ -3760,6 +3762,11 @@ class RootModel extends WindowAdapter implements TreeModel{
         dataOut.write("		        <unit>cm</unit>" + nL);
         dataOut.write("			</property-definition>" + nL);
         dataOut.write("			<property-definition>" + nL);
+        dataOut.write("		    	<label>pixel</label>" + nL);
+        dataOut.write("		        <type>float</type>" + nL);    
+        dataOut.write("		        <unit>none</unit>" + nL);
+        dataOut.write("			</property-definition>" + nL);     
+        dataOut.write("			<property-definition>" + nL);
         dataOut.write("		    	<label>angle</label>" + nL);
         dataOut.write("		        <type>float</type>" + nL);    
         dataOut.write("		        <unit>degree</unit>" + nL);
@@ -3802,7 +3809,7 @@ class RootModel extends WindowAdapter implements TreeModel{
 	      for (int i = 0; i < rootList.size(); i ++) {
 	           Root r = (Root)(rootList.get(i));
 	           if(r.isChild() == 0){
-		            if (r.validate()) r.saveRSML(dataOut);
+		            if (r.validate()) r.saveRSML(dataOut, fit);
 	          }
 	      }
           
