@@ -2743,7 +2743,7 @@ class Root{
 			while(n.child != null){
 				if(n1 != null){
 					diff = rm.fit.getValue(n.x, n.y) - rm.fit.getValue(n1.x, n1.y);
-					if(diff > 15) rmEndOfRoot(n, rm, true);					
+					if(diff > 10) rmEndOfRoot(n, rm, true);					
 //					if(rm.fit.getValue(n.x, n.y) > thr) rmEndOfRoot(n.parent, rm, true);					
 				}
 				if(n.child != null){
