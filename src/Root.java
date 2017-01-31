@@ -1455,7 +1455,7 @@ class Root{
     * @param dataOut
     * @throws IOException
     */
-   public void saveRSML(FileWriter dataOut, NodeFitter fit) throws IOException {
+   public void saveRSML(FileWriter dataOut, NodeFitter fit, boolean storePixels) throws IOException {
       Node n = firstNode;
       if (n == null) return;
       
@@ -1500,13 +1500,17 @@ class Root{
          n = n.child;
          }
       dataOut.write("					</function>" + nL); 
-      dataOut.write("					<function name='pixel' domain='polyline'>" + nL);      
-      n = firstNode;      
-      while (n != null) {
-         n.savePixelToRSML(dataOut, fit);
-         n = n.child;
-         }
-      dataOut.write("					</function>" + nL);       
+      
+      if(storePixels){
+	      dataOut.write("					<function name='pixel' domain='polyline'>" + nL);      
+	      n = firstNode;      
+	      while (n != null) {
+	         n.savePixelToRSML(dataOut, fit);
+	         n = n.child;
+	         }
+	      dataOut.write("					</function>" + nL);
+      }
+      
       dataOut.write("				</functions>" + nL);       
       
       
@@ -1521,7 +1525,7 @@ class Root{
       // Save the children
       for(int i = 0; i < childList.size(); i++){
     	Root r = childList.get(i);
-    	r.saveRSML(dataOut, fit);
+    	r.saveRSML(dataOut, fit, storePixels);
       }
       
 //      dataOut.write(" <measurments>" + nL);      

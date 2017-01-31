@@ -3130,7 +3130,7 @@ class RootModel extends WindowAdapter implements TreeModel{
 	    	  Root r = (Root) rootList.get(i);
 	    	  for(int j = 0; j < 3; j++) r.multiplyNodes();
 	      }
-	      this.saveToRSML();
+	      saveToRSML(true);
 	      
 	      if (fc.showDialog(null, "Select Multiple Datafiles") == JFileChooser.APPROVE_OPTION)
 		      IJ.log(fc.getSelectedFile().length()+" files will be analysed");
@@ -3145,7 +3145,7 @@ class RootModel extends WindowAdapter implements TreeModel{
                     //previous.reCenterAllNodes();
                     previous.cropTracing();
                     previous.deleteSmallRoots();
-                    previous.saveToRSML();
+                    previous.saveToRSML(true);
                     
                     String fName = fc.getSelectedFiles()[i].getAbsolutePath();
                     fName = fName.substring(0, fName.lastIndexOf('.')+1);
@@ -3692,19 +3692,30 @@ class RootModel extends WindowAdapter implements TreeModel{
    /**
     * 
     */
+   public void saveToRSML(boolean savePixels) {
+      // The following makes sure we are saving the datafile with the image.
+      // If the image name has changed or the image has been moved to another location
+      // the datafile should follow.
+      FileInfo fileInfo = img.getOriginalFileInfo();
+      saveToRSML(fileInfo.directory + fileInfo.fileName, savePixels);
+      }
+   
+   /**
+    * 
+    */
    public void saveToRSML() {
       // The following makes sure we are saving the datafile with the image.
       // If the image name has changed or the image has been moved to another location
       // the datafile should follow.
       FileInfo fileInfo = img.getOriginalFileInfo();
-      saveToRSML(fileInfo.directory + fileInfo.fileName);
+      saveToRSML(fileInfo.directory + fileInfo.fileName, false);
       }
 
    /**
     * Save function for the common XML structure
     * @param fName
     */
-  public void saveToRSML(String fName){
+  public void saveToRSML(String fName, boolean storePixels){
       FileWriter dataOut;
       
       fit.checkImageProcessor();
@@ -3761,11 +3772,13 @@ class RootModel extends WindowAdapter implements TreeModel{
         dataOut.write("		        <type>float</type>" + nL);    
         dataOut.write("		        <unit>cm</unit>" + nL);
         dataOut.write("			</property-definition>" + nL);
-        dataOut.write("			<property-definition>" + nL);
-        dataOut.write("		    	<label>pixel</label>" + nL);
-        dataOut.write("		        <type>float</type>" + nL);    
-        dataOut.write("		        <unit>none</unit>" + nL);
-        dataOut.write("			</property-definition>" + nL);     
+        if(storePixels){
+        	dataOut.write("			<property-definition>" + nL);
+        	dataOut.write("		    	<label>pixel</label>" + nL);
+        	dataOut.write("		        <type>float</type>" + nL);    
+        	dataOut.write("		        <unit>none</unit>" + nL);
+        	dataOut.write("			</property-definition>" + nL);     
+        }
         dataOut.write("			<property-definition>" + nL);
         dataOut.write("		    	<label>angle</label>" + nL);
         dataOut.write("		        <type>float</type>" + nL);    
@@ -3809,7 +3822,10 @@ class RootModel extends WindowAdapter implements TreeModel{
 	      for (int i = 0; i < rootList.size(); i ++) {
 	           Root r = (Root)(rootList.get(i));
 	           if(r.isChild() == 0){
-		            if (r.validate()) r.saveRSML(dataOut, fit);
+		            if (r.validate()){
+		            	if(storePixels) r.saveRSML(dataOut, fit, storePixels);
+		            	else r.saveRSML(dataOut, null, storePixels);
+		            }
 	          }
 	      }
           
