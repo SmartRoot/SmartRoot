@@ -1431,7 +1431,7 @@ class RootModel extends WindowAdapter implements TreeModel{
    }
    public void csvSendGrowthRate(PrintWriter pw, boolean header, String name, boolean last){
 	   
-	   if(header) pw.println("image, root, root_name, position, angle, posX, posY, root_order, root_ontology, date, growth");
+	   if(header) pw.println("image, root, root_name, position, vector_angle, av_node_angle, posX, posY, root_order, root_ontology, date, growth");
 	   
       String stmt = null;
       for (int i = 0; i < rootList.size(); i++) {
@@ -1451,13 +1451,15 @@ class RootModel extends WindowAdapter implements TreeModel{
         	 for(int j = 1; j < l.size(); j++){
         		 Mark m = l.get(j);
                  Point p = r.getLocation(m.lPos * pixelSize);
-        		 float growth = ((m.lPos * pixelSize) - (mPrev.lPos * pixelSize))/(Float.valueOf(m.value)-Float.valueOf(mPrev.value)); 
+        		 float growth = ((m.lPos * pixelSize) - (mPrev.lPos * pixelSize))/(Float.valueOf(m.value)-Float.valueOf(mPrev.value));
+        		 float vector_angle = vectToTheta(abs(m.x-mPrev.x), abs(m.y - mPrev.y));
         		 mPrev = l.get(j);
                  stmt =  name + ", ";
                  stmt = stmt.concat(r.getRootKey() + ", ");
                  stmt = stmt.concat(r.getRootID() + ", ");
                  stmt = stmt.concat(m.lPos * pixelSize + ", ");
                  stmt = stmt.concat(m.angle + ", ");
+                 stmt = stmt.concat(m.angle + ", ")
                  if (p != null) {
                      stmt = stmt.concat(p.x * pixelSize + ", ");
                      stmt = stmt.concat(p.y * pixelSize + ", ");
