@@ -1452,14 +1452,32 @@ class RootModel extends WindowAdapter implements TreeModel{
         		 Mark m = l.get(j);
                  Point p = r.getLocation(m.lPos * pixelSize);
         		 float growth = ((m.lPos * pixelSize) - (mPrev.lPos * pixelSize))/(Float.valueOf(m.value)-Float.valueOf(mPrev.value));
-        		 float vector_angle = vectToTheta(abs(m.x-mPrev.x), abs(m.y - mPrev.y));
+        		 float vector_theta = NodeFitter.vectToTheta((m.xLabel - mPrev.xLabel),(m.yLabel-mPrev.yLabel));
+        		 double vector_angle = ((vector_theta/Math.PI)*180)-270;
+
+        		 /**Go over nodes and calculate average node direction between marks. **/
+        		 Node n = r.firstNode;
+        		 Node n1 = n.child;
+        		 int count = 0;
+        		 float dirTotal = 0;
+        			if(this != null){
+        				while(n != r.lastNode){
+        					if(n.cLength > mPrev.lPos && n.cLength < m.lPos){
+        					count = count+1;
+        					dirTotal = dirTotal + n.theta;
+        					}
+        					n = n1;
+        					n1 = n.child;
+        				}
+        			}
+        		 double av_node_angle = (((dirTotal/count)/Math.PI)*180)-270;
         		 mPrev = l.get(j);
                  stmt =  name + ", ";
                  stmt = stmt.concat(r.getRootKey() + ", ");
                  stmt = stmt.concat(r.getRootID() + ", ");
                  stmt = stmt.concat(m.lPos * pixelSize + ", ");
-                 stmt = stmt.concat(m.angle + ", ");
-                 stmt = stmt.concat(m.angle + ", ")
+                 stmt = stmt.concat(vector_angle + ", ");
+                 stmt = stmt.concat(av_node_angle + ", ");
                  if (p != null) {
                      stmt = stmt.concat(p.x * pixelSize + ", ");
                      stmt = stmt.concat(p.y * pixelSize + ", ");
