@@ -1857,7 +1857,7 @@ class RootModel extends WindowAdapter implements TreeModel{
          if(r.getParent() != null) stmt = stmt.concat(r.getParent().getRootKey() + ", ");
          else stmt = stmt.concat("-1, ");
          stmt = stmt.concat(r.lPosPixelsToCm(r.getDistanceFromBase()) + ", ");
-         stmt = stmt.concat((r.getInsertAngl() * (180 / Math.PI)) + ", ");
+         stmt = stmt.concat(((r.getInsertAngl() * (180 / Math.PI))-270) + ", ");
          stmt = stmt.concat(r.isLeftRight() + ", ");
          stmt = stmt.concat(r.childList.size() + ", ");
          stmt = stmt.concat(r.getChildDensity() + ", ");
@@ -2018,7 +2018,7 @@ class RootModel extends WindowAdapter implements TreeModel{
          stmt = stmt.concat(r.lPosPixelsToCm(r.getVectorLength()) + ", ");
          stmt = stmt.concat(r.getRootSurface() + ", ");
          stmt = stmt.concat(r.getRootVolume() + ", ");
-         stmt = stmt.concat(r.getRootOrientation() * (180 / Math.PI) + ", ");
+         stmt = stmt.concat(((r.getRootOrientation() * (180 / Math.PI))-270) + ", ");
         // stmt = stmt.concat(r.getConvexHullArea() + ", ");
          stmt = stmt.concat(r.getAVGDiameter() + ", ");
          stmt = stmt.concat(r.isChild() + ", ");
