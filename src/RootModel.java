@@ -1450,9 +1450,11 @@ class RootModel extends WindowAdapter implements TreeModel{
         	 Mark mPrev = l.get(0);
         	 for(int j = 1; j < l.size(); j++){
         		 Mark m = l.get(j);
+        		 m.createGraphics();
+        		 mPrev.createGraphics();
                  Point p = r.getLocation(m.lPos * pixelSize);
         		 float growth = ((m.lPos * pixelSize) - (mPrev.lPos * pixelSize))/(Float.valueOf(m.value)-Float.valueOf(mPrev.value));
-        		 float vector_theta = NodeFitter.vectToTheta((m.xLabel - mPrev.xLabel),(m.yLabel-mPrev.yLabel));
+        		 float vector_theta = NodeFitter.vectToTheta((float) (m.xLabel - mPrev.xLabel),(float) (m.yLabel-mPrev.yLabel));
         		 double vector_angle = ((vector_theta/Math.PI)*180)-270;
 
         		 /**Go over nodes and calculate average node direction between marks. **/
@@ -1472,6 +1474,7 @@ class RootModel extends WindowAdapter implements TreeModel{
         			}
         		 double av_node_angle = (((dirTotal/count)/Math.PI)*180)-270;
         		 mPrev = l.get(j);
+        		 
                  stmt =  name + ", ";
                  stmt = stmt.concat(r.getRootKey() + ", ");
                  stmt = stmt.concat(r.getRootID() + ", ");
