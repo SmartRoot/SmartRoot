@@ -3172,7 +3172,7 @@ class RootModel extends WindowAdapter implements TreeModel{
                     RootModel previous = new RootModel(imw, directory, previousDataFName);
                     //previous.reCenterAllNodes();
                     previous.cropTracing();
-                    previous.deleteSmallRoots();
+//                    previous.deleteSmallRoots();
                     previous.saveToRSML(true);
                     
                     String fName = fc.getSelectedFiles()[i].getAbsolutePath();
