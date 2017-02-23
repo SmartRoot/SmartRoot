@@ -2742,15 +2742,13 @@ class Root{
 				float prev = n.prevPixValue;
 				float pix = rm.fit.getValue(n.x, n.y);
 				float diff = pix - prev;
+				n = n.parent;
 				if(diff > thr) {
 					rmEndOfRoot(n, rm, true);
 					count = 0;
 				}
 				if(diff < thr/4) count = count+1;
-				if(count > 5)	break;
-				}
-				if(n.parent != null){
-					n = n.parent;
+				if(count > 10)	break;
 				}
 			}
 		}
