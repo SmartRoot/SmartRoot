@@ -2731,6 +2731,9 @@ class Root{
 	
 		Node n = lastNode;
 		rm.fit.checkImageProcessor();
+		float thr = (getMaxPixelValue(rm) - getMinPixelValue(rm))/2;
+		IJ.log("The threshold is" + thr);
+		int count = 0; 
 		
 		if(this != null){
 			while(n.parent != null){
@@ -2738,9 +2741,12 @@ class Root{
 				float prev = n.prevPixValue;
 				float pix = rm.fit.getValue(n.x, n.y);
 				float diff = pix - prev;
-				IJ.log("previous pixel value is" + prev+ "current pixel value is" + pix + "Difference is" + diff);
-				if(diff > 20) rmEndOfRoot(n, rm, true);
-				if(diff < 5) break;
+				if(diff > thr) {
+					rmEndOfRoot(n, rm, true);
+					count = 0;
+				}
+				if(diff < thr/4) count = count+1;
+				if(count > 5)	break;
 				}
 				if(n.parent != null){
 					n = n.parent;
