@@ -2727,37 +2727,31 @@ class Root{
 		needsRefresh = true;
 	}
 	
-	
-	
 	public void cropRoot(RootModel rm){
 	
 		Node n = firstNode;
-		Node n1 = parentNode;
-		float diff = 0;
 		rm.fit.checkImageProcessor();
-		
-		float thr = (getMaxPixelValue(rm) + getMinPixelValue(rm))/2;
-		IJ.log(thr+" / "+getMaxPixelValue(rm)+" / "+getMinPixelValue(rm));
 		
 		if(this != null){
 			while(n.child != null){
-				if(n1 != null){
-					diff = rm.fit.getValue(n.x, n.y) - rm.fit.getValue(n1.x, n1.y);
-					if(diff > 10) rmEndOfRoot(n, rm, true);					
-//					if(rm.fit.getValue(n.x, n.y) > thr) rmEndOfRoot(n.parent, rm, true);					
-				}
 				if(n.child != null){
-					n1 = n;
+				float prev = n.prevPixValue;
+				float pix = rm.fit.getValue(n.x, n.y);
+				float diff = pix - prev;
+				IJ.log("previous pixel value is" + prev+ "current pixel value is" + pix + "Difference is" + diff);
+				if(diff > 10) rmEndOfRoot(n, rm, true);				
+			}
+				if(n.child != null){
 					n = n.child;
 				}
 			}
 		}
 		// If the difference between the root and the parent node is too big, delete the whole root
-		if(isChild() > 0){
-			if(getMeanPixelValue(rm) - this.parent.getMeanPixelValue(rm) > 20){
-				delete(rm);
-			}
-		}		
+		//if(isChild() > 0){
+		//	if(getMeanPixelValue(rm) - this.parent.getMeanPixelValue(rm) > 20){
+		//		delete(rm);
+		//	}
+		//}		
 		
 //		if(fit.getValue(n2.x, n2.y) > autoThreshold) r.rmNode(n2);
 //		n = r.lastNode;

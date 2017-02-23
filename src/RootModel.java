@@ -3145,16 +3145,21 @@ class RootModel extends WindowAdapter implements TreeModel{
     * Read and merge multiple datafiles
     */
    public void readImagesFromFolder() {
+	   
+	   //If user wishes to do so, multiply nodes
+	   boolean multiply = IJ.showMessageWithCancel("Multiply nodes", "Do you want to multiply nodes?");
+	   if (multiply == true){
+	   		for(int i = 0; i < rootList.size(); i++){
+				Root r = (Root) rootList.get(i);
+				for(int j = 0; j < 3; j++) r.multiplyNodes();
+	   		}}
+	   //Save datafile
+	   saveToRSML(true);
+	   	
 	      JFileChooser fc = new JFileChooser(new File(directory));
 	      fc.setMultiSelectionEnabled(true);
 	      fc.setFileFilter(imagefileFilter);
-	      
-	      for(int i = 0; i < rootList.size(); i++){
-	    	  Root r = (Root) rootList.get(i);
-	    	  for(int j = 0; j < 3; j++) r.multiplyNodes();
-	      }
-	      saveToRSML(true);
-	      
+
 	      if (fc.showDialog(null, "Select Multiple Datafiles") == JFileChooser.APPROVE_OPTION)
 		      IJ.log(fc.getSelectedFile().length()+" files will be analysed");
 	      	 String previousDataFName = dataFName; 
@@ -3800,7 +3805,7 @@ class RootModel extends WindowAdapter implements TreeModel{
         	dataOut.write("		    	<label>pixel</label>" + nL);
         	dataOut.write("		        <type>float</type>" + nL);    
         	dataOut.write("		        <unit>none</unit>" + nL);
-        	dataOut.write("			</property-definition>" + nL);     
+        	dataOut.write("			</property-definition>" + nL);    
         }
         dataOut.write("			<property-definition>" + nL);
         dataOut.write("		    	<label>angle</label>" + nL);
