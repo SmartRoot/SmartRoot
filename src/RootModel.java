@@ -162,11 +162,12 @@ public boolean accept(File f) {
    return f.getName().toLowerCase().endsWith("jpg") ||
 		   f.getName().toLowerCase().endsWith("tiff") ||
 		   f.getName().toLowerCase().endsWith("jpeg") ||
+		   f.getName().toLowerCase().endsWith("tif") ||
 		   f.getName().toLowerCase().endsWith("png");
    }
 
 public String getDescription() {
-   return "SmartRoot Datafiles";
+   return "SmartRoot images";
    }
 }
 
@@ -3147,21 +3148,22 @@ class RootModel extends WindowAdapter implements TreeModel{
    public void readImagesFromFolder() {
 	   
 	   //If user wishes to do so, multiply nodes
-	   boolean multiply = IJ.showMessageWithCancel("Multiply nodes", "Do you want to multiply nodes?");
-	   if (multiply == true){
+	   int multiply = JOptionPane.showConfirmDialog(null, "Do you want to mutliply the nodes?",
+ 			  "Node multiplication", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+ 	  if (multiply == JOptionPane.YES_OPTION){
 	   		for(int i = 0; i < rootList.size(); i++){
 				Root r = (Root) rootList.get(i);
 				for(int j = 0; j < 3; j++) r.multiplyNodes();
 	   		}}
 	   //Save datafile
-	   saveToRSML(true);
+	   this.saveToRSML(true);
 	   	
 	      JFileChooser fc = new JFileChooser(new File(directory));
 	      fc.setMultiSelectionEnabled(true);
 	      fc.setFileFilter(imagefileFilter);
 
 	      if (fc.showDialog(null, "Select Multiple Datafiles") == JFileChooser.APPROVE_OPTION)
-		      IJ.log(fc.getSelectedFile().length()+" files will be analysed");
+		     IJ.log(fc.getSelectedFile().length()+" files will be analysed");
 	      	 String previousDataFName = dataFName; 
 	         for(int i = fc.getSelectedFiles().length-1; i >= 0; i--){
 	        	 
