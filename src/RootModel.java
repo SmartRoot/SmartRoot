@@ -3175,7 +3175,6 @@ class RootModel extends WindowAdapter implements TreeModel{
                     RootModel previous = new RootModel(imw, directory, previousDataFName);
                     //previous.reCenterAllNodes();
                     previous.cropTracing();
-                    //previous.deleteSmallRoots();
                     previous.saveToRSML(true);
                                      
                     previousDataFName = previous.dataFName;
@@ -5295,7 +5294,7 @@ class RootModel extends WindowAdapter implements TreeModel{
     public String getRootKey(){
     	return UUID.randomUUID().toString();
     }
-    
+  
     
     public void deleteSmallRoots(){
     	Root r;

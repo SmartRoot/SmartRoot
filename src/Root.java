@@ -2728,7 +2728,6 @@ class Root{
 	}
 	
 	public void cropRoot(RootModel rm){
-	
 		Node n = lastNode;
 		rm.fit.checkImageProcessor();
 		float thr = (getMaxPixelValue(rm) - getMinPixelValue(rm))/2;
@@ -2749,15 +2748,22 @@ class Root{
 				}
 				if(diff < thr/4) count = count+1;
 				if(count > 10)	break;
+				
 				}
 			}
 		}
-		// If the difference between the root and the parent node is too big, delete the whole root
-		//if(isChild() > 0){
-		//	if(getMeanPixelValue(rm) - this.parent.getMeanPixelValue(rm) > 20){
+		if(nNodes < 3) delete(rm);
+
+		//If the difference between the root and the parent node is too big, delete the whole root
+		//IJ.log("The child level is" + this.isChild());
+		//if(this.isChild() != 0){
+		//float diff2 = getMaxPixelValue(rm) - getMeanPixelValue(rm);
+		//IJ.log("The removal diff is" + diff2);
+		//if(diff2 < thr/4){
 		//		delete(rm);
-		//	}
-		//}		
+		//}
+		//}
+			
 		
 //		if(fit.getValue(n2.x, n2.y) > autoThreshold) r.rmNode(n2);
 //		n = r.lastNode;
