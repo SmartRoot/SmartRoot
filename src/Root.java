@@ -2747,13 +2747,12 @@ class Root{
 					count = 0;
 				}
 				if(diff < thr/4) count = count+1;
-				if(count > 10)	break;
+				if(count > 5)	break;
 				
 				}
 			}
 		}
 		if(nNodes < 3) delete(rm);
-
 		//If the difference between the root and the parent node is too big, delete the whole root
 		//IJ.log("The child level is" + this.isChild());
 		//if(this.isChild() != 0){
