@@ -3156,16 +3156,16 @@ class RootModel extends WindowAdapter implements TreeModel{
 				for(int j = 0; j < 3; j++) r.multiplyNodes();
 	   		}}
 	   //Save datafile
-	   this.saveToRSML(true);
+	   this.saveToRSML();
 	   	
 	      JFileChooser fc = new JFileChooser(new File(directory));
 	      fc.setMultiSelectionEnabled(true);
 	      fc.setFileFilter(imagefileFilter);
+		  String previousDataFName = dataFName;
 
 	      if (fc.showDialog(null, "Select Multiple Datafiles") == JFileChooser.APPROVE_OPTION){
 		     IJ.log(fc.getSelectedFile().length()+" files will be analysed");
-	      	 String previousDataFName = dataFName; 
-	         
+		      
 	      	 for(int i = fc.getSelectedFiles().length-1; i >= 0; i--){
 	        	 
                  ImagePlus imp = imgOpener.openImage(fc.getSelectedFiles()[i].getAbsolutePath());
@@ -3175,13 +3175,18 @@ class RootModel extends WindowAdapter implements TreeModel{
                     RootModel previous = new RootModel(imw, directory, previousDataFName);
                     //previous.reCenterAllNodes();
                     previous.cropTracing();
-                    previous.saveToRSML(true);
-                                     
-                    previousDataFName = previous.dataFName;
+                    previous.saveToRSML();
+              
+                    String fName = fc.getSelectedFiles()[i].getAbsolutePath();
+                    fName = fName.substring(0, fName.lastIndexOf('.')+1);
+                    fName = fName + "rsml";                    
+                    previousDataFName = fName;
                     IJ.log(previousDataFName);
                     
                     imp.getWindow().close();
                     ric.kill();
+                    
+                    
                  }
 	         }
 	      IJ.log("All files were traced");
@@ -3718,24 +3723,24 @@ class RootModel extends WindowAdapter implements TreeModel{
    /**
     * 
     */
-   public void saveToRSML(boolean savePixels) {
-      // The following makes sure we are saving the datafile with the image.
-      // If the image name has changed or the image has been moved to another location
-      // the datafile should follow.
-      FileInfo fileInfo = img.getOriginalFileInfo();
-      saveToRSML(fileInfo.directory + fileInfo.fileName, savePixels);
-      }
-   
-   /**
-    * 
-    */
    public void saveToRSML() {
       // The following makes sure we are saving the datafile with the image.
       // If the image name has changed or the image has been moved to another location
       // the datafile should follow.
       FileInfo fileInfo = img.getOriginalFileInfo();
-      saveToRSML(fileInfo.directory + fileInfo.fileName, false);
+      saveToRSML(fileInfo.directory + fileInfo.fileName, true);
       }
+   
+   /**
+    * 
+    */
+   //public void saveToRSML() {
+      // The following makes sure we are saving the datafile with the image.
+      // If the image name has changed or the image has been moved to another location
+      // the datafile should follow.
+     // FileInfo fileInfo = img.getOriginalFileInfo();
+      //saveToRSML(fileInfo.directory + fileInfo.fileName, false);
+   //}
 
    /**
     * Save function for the common XML structure

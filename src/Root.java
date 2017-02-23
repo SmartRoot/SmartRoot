@@ -2730,29 +2730,31 @@ class Root{
 	public void cropRoot(RootModel rm){
 		Node n = lastNode;
 		rm.fit.checkImageProcessor();
-		float thr = (getMaxPixelValue(rm) - getMinPixelValue(rm))/2;
-		if (thr < 5) thr = 5;
-		IJ.log("The threshold is" + thr);
-		int count = 0; 
+		float corr = getMeanPixelValue(rm)-getMeanPixelValuePrev(rm);
+		double thr = (getMaxPixelValuePrev(rm) - getMinPixelValuePrev(rm))/4;
+		if(thr < 3) thr = 3;
+		IJ.log("The threshold is" + thr + "The correction is " + corr);
+		int count = 0;
 		
 		if(this != null){
-			while(n.parent != null){
+			while(n != firstNode){
 				if(n != null){
-				float prev = n.prevPixValue;
+				float prev = n.prevPixValue + corr;
 				float pix = rm.fit.getValue(n.x, n.y);
-				float diff = pix - prev;
+				float diff = pix-prev;
 				n = n.parent;
-				if(diff > thr) {
+				if(diff > thr){
 					rmEndOfRoot(n, rm, true);
-					count = 0;
+					count =0;
 				}
-				if(diff < thr/4) count = count+1;
-				if(count > 5)	break;
-				
-				}
+				if(diff < thr/2) count = count+1;
+				if(count > 10) break;
+				} 
 			}
-		}
+			}
+	
 		if(nNodes < 3) delete(rm);
+		
 		//If the difference between the root and the parent node is too big, delete the whole root
 		//IJ.log("The child level is" + this.isChild());
 		//if(this.isChild() != 0){
@@ -2800,6 +2802,41 @@ class Root{
 		while(n.child != null){
 			count ++;
 			sum += rm.fit.getValue(n.x, n.y);
+			n = n.child;
+				
+		}
+		return sum/count;
+	}
+	public float getMaxPixelValuePrev(RootModel rm){
+		Node n = firstNode;		
+		Float max = 0f;
+		rm.fit.checkImageProcessor();
+		while(n.child != null){
+			if(n.prevPixValue > max) max = n.prevPixValue;
+			n = n.child;				
+		}
+		return max;
+	}
+	
+	public float getMinPixelValuePrev(RootModel rm){
+		Node n = firstNode;
+		Float min = 1.e9f;
+		rm.fit.checkImageProcessor();
+		while(n.child != null){
+			if(n.prevPixValue < min) min = n.prevPixValue;
+			n = n.child;
+				
+		}
+		return min;
+	}
+	public float getMeanPixelValuePrev(RootModel rm){
+		Node n = firstNode;
+		Float sum = 0f;
+		int count = 0;
+		rm.fit.checkImageProcessor();
+		while(n.child != null){
+			count ++;
+			sum += n.prevPixValue;
 			n = n.child;
 				
 		}
