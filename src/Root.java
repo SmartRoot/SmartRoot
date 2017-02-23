@@ -2732,6 +2732,7 @@ class Root{
 		Node n = lastNode;
 		rm.fit.checkImageProcessor();
 		float thr = (getMaxPixelValue(rm) - getMinPixelValue(rm))/2;
+		if (thr < 5) thr = 5;
 		IJ.log("The threshold is" + thr);
 		int count = 0; 
 		
