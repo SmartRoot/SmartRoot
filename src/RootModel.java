@@ -3162,10 +3162,11 @@ class RootModel extends WindowAdapter implements TreeModel{
 	      fc.setMultiSelectionEnabled(true);
 	      fc.setFileFilter(imagefileFilter);
 
-	      if (fc.showDialog(null, "Select Multiple Datafiles") == JFileChooser.APPROVE_OPTION)
+	      if (fc.showDialog(null, "Select Multiple Datafiles") == JFileChooser.APPROVE_OPTION){
 		     IJ.log(fc.getSelectedFile().length()+" files will be analysed");
 	      	 String previousDataFName = dataFName; 
-	         for(int i = fc.getSelectedFiles().length-1; i >= 0; i--){
+	         
+	      	 for(int i = fc.getSelectedFiles().length-1; i >= 0; i--){
 	        	 
                  ImagePlus imp = imgOpener.openImage(fc.getSelectedFiles()[i].getAbsolutePath());
                  if (imp != null) {
@@ -3174,22 +3175,18 @@ class RootModel extends WindowAdapter implements TreeModel{
                     RootModel previous = new RootModel(imw, directory, previousDataFName);
                     //previous.reCenterAllNodes();
                     previous.cropTracing();
-//                    previous.deleteSmallRoots();
+                    //previous.deleteSmallRoots();
                     previous.saveToRSML(true);
-                    
-                    String fName = fc.getSelectedFiles()[i].getAbsolutePath();
-                    fName = fName.substring(0, fName.lastIndexOf('.')+1);
-                    fName = fName + "rsml";                    
-                    previousDataFName = fName;
+                                     
+                    previousDataFName = previous.dataFName;
                     IJ.log(previousDataFName);
                     
                     imp.getWindow().close();
                     ric.kill();
                  }
-                 
 	         }
 	      IJ.log("All files were traced");
-	      }
+	      }}
    
    /**
     * Read and merge multiple datafiles
