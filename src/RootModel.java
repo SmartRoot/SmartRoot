@@ -5375,18 +5375,20 @@ class RootModel extends WindowAdapter implements TreeModel{
     
     
     public void cropSelectedRoot(){
-    	selectedRoot.cropRoot(this);
+    	if (selectedRoot.isChild() == 0) selectedRoot.cropMainRoot(this);
+    	if (selectedRoot.isChild() > 0) selectedRoot.cropLatRoot(this);
     }
     
     
     public void cropTracing(){
-
     	
     	Root r;
     	for(int k = 0; k < 3; k++){
 			for(int i =0 ; i < rootList.size() ; i++){
 				r =  (Root) rootList.get(i);
-				if(r.isChild() == k) r.cropRoot(this);
+				if(r.isChild() == k && k == 0) r.cropMainRoot(this);
+				if(r.isChild() == k && k > 0) r.cropLatRoot(this);
+				
 			}    	
     	}
 		//appendTracing();
