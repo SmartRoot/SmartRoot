@@ -3173,8 +3173,8 @@ class RootModel extends WindowAdapter implements TreeModel{
                     RootImageCanvas ric = new RootImageCanvas(imp);
                     SRImageWindow imw = new SRImageWindow(imp, ric);
                     RootModel previous = new RootModel(imw, directory, previousDataFName);
-                    //previous.reCenterAllNodes();
                     previous.cropTracing();
+                    previous.deleteSmallRoots();
                     previous.saveToRSML();
               
                     String fName = fc.getSelectedFiles()[i].getAbsolutePath();
@@ -5303,18 +5303,15 @@ class RootModel extends WindowAdapter implements TreeModel{
     
     public void deleteSmallRoots(){
     	Root r;
-		for(int i =0 ; i < rootList.size() ; i++){
-			r =  (Root) rootList.get(i);
-			r.setSelect(false);
-		}
-		for(int i =0 ; i < rootList.size() ; i++){
-			r =  (Root) rootList.get(i);
+    	for(int i = rootList.size(); i > 0; i--){
+			r =  (Root) rootList.get(i-1);
+			IJ.log("Root " + i);
 			if(r.nNodes < 3){
 				selectedRoot = r;
 				deleteSelectedRoot();
+				IJ.log("root deleted");
 			}
 		}
-		//SR.write("# of delete roots: "+d);
     }
  
     
@@ -5381,18 +5378,16 @@ class RootModel extends WindowAdapter implements TreeModel{
     
     
     public void cropTracing(){
-    	
-    	Root r;
-    	for(int k = 0; k < 3; k++){
-			for(int i =0 ; i < rootList.size() ; i++){
-				r =  (Root) rootList.get(i);
-				if(r.isChild() == k && k == 0) r.cropMainRoot(this);
-				if(r.isChild() == k && k > 0) r.cropLatRoot(this);
-				
-			}    	
-    	}
+    	IJ.log("size of rootlist is "+ rootList.size());
+    	for(int i = 0; i < rootList.size() ; i++){
+        	IJ.log("size of rootlist is "+ rootList.size());
+			Root r = (Root) rootList.get(i);
+			IJ.log("Root" + i);
+			if(r.isChild()  == 0) r.cropMainRoot(this);
+			if(r.isChild() > 0) r.cropLatRoot(this);
+			}
 		//appendTracing();
-    }
+   		}   	
     
     public void reCenterAllNodes(){
     	Root r;

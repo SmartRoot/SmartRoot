@@ -67,6 +67,7 @@ import java.awt.geom.*;
 //import javax.swing.table.*;
 import java.util.*;
 import java.util.List;
+import java.util.Collection;
 //XML file support
 //import javax.xml.parsers.DocumentBuilder; 
 //import javax.xml.parsers.DocumentBuilderFactory;  
@@ -2751,22 +2752,22 @@ class Root{
 					count =0;
 				}
 				if(diff < thr/2) count = count+1;
-				if(count > 5) break;
+				if(count > 10) break;
 				} 
 			}
 			}
 	}
 	
 	public void cropLatRoot(RootModel rm){
-		IJ.log("Crop Lat Root");
+		IJ.log("Crop Lat Root " + this.getRootID());
 		
 		Node n = lastNode;
 		rm.fit.checkImageProcessor();
-		double corr = getMinPixelValue(rm)-getMinPixelValuePrev(rm);
+		double corr = this.parent.getMinPixelValue(rm)- this.parent.getMinPixelValuePrev(rm);
 		double thr = (getMeanPixelValuePrev(rm) - getMinPixelValuePrev(rm))/2;
-		if(thr < 3) thr = 3;
+		//if(thr < 3) thr = 3;
 		IJ.log("The threshold is" + thr + "The correction is " + corr );
-		int count = 0;
+		//int count = 0;
 		
 		if(this != null){
 			while(n != firstNode){
@@ -2778,15 +2779,15 @@ class Root{
 				IJ.log("prev="+prev+"pix="+pix+",diff="+diff);
 				if(diff > thr){
 					rmEndOfRoot(n, rm, true);
-					count =0;
+				//	count =0;
 				}
-				if(diff < thr/2) count = count+1;
-				if(count > 5) break;
+				//if(diff < thr/2) count = count+1;
+				//if(count > 10) break;
 				} 
 			}
 			}
+		
 	
-		if(nNodes < 3) delete(rm);
 		
 		//If the difference between the root and the parent node is too big, delete the whole root
 		//IJ.log("The child level is" + this.isChild());
@@ -2799,7 +2800,7 @@ class Root{
 		//}
 			
 		
-//		if(fit.getValue(n2.x, n2.y) > autoThreshold) r.rmNode(n2);
+		//if(fit.getValue(n2.x, n2.y) > autoThreshold) r.rmNode(n2);
 //		n = r.lastNode;
 //		if(fit.getValue(n.x, n.y) > autoThreshold) r.rmNode(n);
 	}
@@ -2885,6 +2886,7 @@ class Root{
 				n = n.child;
 				count = count+1;	
 			}
+		Arrays.sort(m);
 		int middle = m.length/2;
 		if (m.length%2 == 1) {
 		        return  m[middle];
@@ -2903,6 +2905,7 @@ class Root{
 				n = n.child;
 				count = count+1;
 		}
+		Arrays.sort(m);
 		int middle = m.length/2;
 		if (m.length%2 == 1) {
 		        return  m[middle];
