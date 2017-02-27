@@ -2732,18 +2732,18 @@ class Root{
 		
 		Node n = lastNode;
 		rm.fit.checkImageProcessor();
-		float corr = getMeanPixelValue(rm)-getMeanPixelValuePrev(rm);
+		double corr = getMinPixelValue(rm)-getMinPixelValuePrev(rm);
 		double thr = (getMeanPixelValuePrev(rm) - getMinPixelValuePrev(rm))/2;
 		if(thr < 3) thr = 3;
-		IJ.log("The threshold is" + thr + "The correction is " + corr);
+		IJ.log("The threshold is" + thr + "The correction is " + corr );
 		int count = 0;
 		
 		if(this != null){
 			while(n != firstNode){
 				if(n != null){
-				float prev = n.prevPixValue + corr;
+				double prev = n.prevPixValue + corr;
 				float pix = rm.fit.getValue(n.x, n.y);
-				float diff = pix-prev;
+				double diff = pix-prev;
 				n = n.parent;
 				IJ.log("prev="+prev+"pix="+pix+",diff="+diff);
 				if(diff > thr){
@@ -2751,27 +2751,10 @@ class Root{
 					count =0;
 				}
 				if(diff < thr/2) count = count+1;
-				if(count > 10) break;
+				if(count > 5) break;
 				} 
 			}
 			}
-	
-		if(nNodes < 3) delete(rm);
-		
-		//If the difference between the root and the parent node is too big, delete the whole root
-		//IJ.log("The child level is" + this.isChild());
-		//if(this.isChild() != 0){
-		//float diff2 = getMaxPixelValue(rm) - getMeanPixelValue(rm);
-		//IJ.log("The removal diff is" + diff2);
-		//if(diff2 < thr/4){
-		//		delete(rm);
-		//}
-		//}
-			
-		
-//		if(fit.getValue(n2.x, n2.y) > autoThreshold) r.rmNode(n2);
-//		n = r.lastNode;
-//		if(fit.getValue(n.x, n.y) > autoThreshold) r.rmNode(n);
 	}
 	
 	public void cropLatRoot(RootModel rm){
@@ -2779,18 +2762,18 @@ class Root{
 		
 		Node n = lastNode;
 		rm.fit.checkImageProcessor();
-		float corr = getMeanPixelValue(rm)-getMeanPixelValuePrev(rm);
+		double corr = getMinPixelValue(rm)-getMinPixelValuePrev(rm);
 		double thr = (getMeanPixelValuePrev(rm) - getMinPixelValuePrev(rm))/2;
 		if(thr < 3) thr = 3;
-		IJ.log("The threshold is" + thr + "The correction is " + corr);
+		IJ.log("The threshold is" + thr + "The correction is " + corr );
 		int count = 0;
 		
 		if(this != null){
 			while(n != firstNode){
 				if(n != null){
-				float prev = n.prevPixValue + corr;
+				double prev = n.prevPixValue + corr;
 				float pix = rm.fit.getValue(n.x, n.y);
-				float diff = pix-prev;
+				double diff = pix-prev;
 				n = n.parent;
 				IJ.log("prev="+prev+"pix="+pix+",diff="+diff);
 				if(diff > thr){
@@ -2798,7 +2781,7 @@ class Root{
 					count =0;
 				}
 				if(diff < thr/2) count = count+1;
-				if(count > 10) break;
+				if(count > 5) break;
 				} 
 			}
 			}
@@ -2890,6 +2873,42 @@ class Root{
 				
 		}
 		return sum/count;
+	}	
+	
+	public double getMedianPixelValue(RootModel rm){
+		Node n = firstNode;	
+		double[] m = new double[nNodes];
+		rm.fit.checkImageProcessor();
+		int count = 0;
+		while(n.child != null){
+				m[count] = rm.fit.getValue(n.x, n.y);
+				n = n.child;
+				count = count+1;	
+			}
+		int middle = m.length/2;
+		if (m.length%2 == 1) {
+		        return  m[middle];
+		} else {
+		       	return 	((m[middle-1] + m[middle]) / 2.0);
+		}
+	}	
+	
+	public double getMedianPixelValuePrev(RootModel rm){
+		Node n = firstNode;	
+		double[] m = new double[nNodes];
+		rm.fit.checkImageProcessor();
+		int count = 0;
+		while(n.child != null){
+				m[count] = n.prevPixValue;
+				n = n.child;
+				count = count+1;
+		}
+		int middle = m.length/2;
+		if (m.length%2 == 1) {
+		        return  m[middle];
+		} else {
+		       	return 	((m[middle-1] + m[middle]) / 2.0);
+		}
 	}	
 	
 	
