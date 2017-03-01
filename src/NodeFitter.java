@@ -579,7 +579,7 @@ SR.log("maxL: " + maxL + " at " + x1 + " " + y1 + " dist = " + d);
     * @param tmax
     */
    public void suggest(Node suggestedNode, Node n, Node p, int type, boolean lr, float tmax) {
-      calcAdaptiveThreshold((int) n.x, (int) n.y, (int) Math.ceil(ADAPTIVE_THRESHOLD_RADIUS_FACTOR * n.diameter / 2.0f));
+	  calcAdaptiveThreshold((int) n.x, (int) n.y, (int) Math.ceil(ADAPTIVE_THRESHOLD_RADIUS_FACTOR * n.diameter / 2.0f));
       float thetaStep = 0.1f;
       float tIns = 0;
       int nTheta = (int) (2.0f * PI / thetaStep);

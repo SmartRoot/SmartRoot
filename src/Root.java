@@ -2735,9 +2735,13 @@ class Root{
 		rm.fit.checkImageProcessor();
 		double corr = getMinPixelValue(rm)-getMinPixelValuePrev(rm);
 		double thr = (getMeanPixelValuePrev(rm) - getMinPixelValuePrev(rm))/2;
-		if(thr < 3) thr = 3;
-		IJ.log("The threshold is" + thr + "The correction is " + corr );
-		int count = 0;
+		double MeanDiff = (getMeanPixelValue(rm)-corr) - getMeanPixelValuePrev(rm);
+		double NodeDiff = (MeanDiff*nNodes)/getMeanPixelValuePrev(rm);
+		if(thr < 5) thr = 5;
+		double breakpoint = nNodes/20;
+		IJ.log("The threshold is" + thr + "The correction is " + corr+ " The breakpoint is" + breakpoint + " The nodediff is " + NodeDiff);
+		int countY = 0;
+		int countN = 0;
 		
 		if(this != null){
 			while(n != firstNode){
@@ -2748,11 +2752,16 @@ class Root{
 				n = n.parent;
 				IJ.log("prev="+prev+"pix="+pix+",diff="+diff);
 				if(diff > thr){
-					rmEndOfRoot(n, rm, true);
-					count =0;
+					countY =0;
+					countN = countN+1;
 				}
-				if(diff < thr/2) count = count+1;
-				if(count > 10) break;
+				if(diff < thr) {
+					countY = countY+1;
+					countN = 0;
+				}
+
+				if(countN > NodeDiff/2 && countN > 0) rmEndOfRoot(n, rm, true);
+				if(countY > breakpoint && breakpoint > 2) break;
 				} 
 			}
 			}
@@ -2762,48 +2771,45 @@ class Root{
 		IJ.log("Crop Lat Root " + this.getRootID());
 		
 		Node n = lastNode;
+		Node nF = firstNode;
 		rm.fit.checkImageProcessor();
-		double corr = this.parent.getMinPixelValue(rm)- this.parent.getMinPixelValuePrev(rm);
-		double thr = (getMeanPixelValuePrev(rm) - getMinPixelValuePrev(rm))/2;
-		//if(thr < 3) thr = 3;
-		IJ.log("The threshold is" + thr + "The correction is " + corr );
-		//int count = 0;
+		double corr = this.parent.getMinPixelValue(rm) - this.parent.getMinPixelValuePrev(rm);
+		float background = rm.fit.getValue(nF.x, nF.y-10);
+		if (nF.theta < 1.5*Math.PI) background = rm.fit.getValue(n.x-5, n.y-5);
+		if (nF.theta > 1.5*Math.PI) background = rm.fit.getValue(n.x+5, n.y-5);
+		IJ.log("theta is" + nF.theta + " background is" + background);
+		double thr = (background-getMaxPixelValuePrev(rm))/2;
+		double MeanDiff = (getMeanPixelValue(rm)-corr) - getMeanPixelValuePrev(rm);
+		double NodeDiff = (MeanDiff*nNodes)/getMeanPixelValuePrev(rm);
+		double breakpoint = nNodes/10;
+		IJ.log("The threshold is" + thr + "The correction is " + corr+ " The breakpoint is" + breakpoint + " The nodediff is " + NodeDiff);
+		int countY = 0;
+		int countN = 0;
 		
 		if(this != null){
 			while(n != firstNode){
 				if(n != null){
-				double prev = n.prevPixValue + corr;
+				double prev = n.prevPixValue;
 				float pix = rm.fit.getValue(n.x, n.y);
 				double diff = pix-prev;
 				n = n.parent;
 				IJ.log("prev="+prev+"pix="+pix+",diff="+diff);
 				if(diff > thr){
-					rmEndOfRoot(n, rm, true);
-				//	count =0;
+					countY =0;
+					countN = countN+1;
 				}
-				//if(diff < thr/2) count = count+1;
-				//if(count > 10) break;
+				if(diff < thr) {
+					countY = countY+1;
+					countN = 0;
+				}
+
+				if(countN > NodeDiff/2 && countN > 0) rmEndOfRoot(n, rm, true);
+				if(countY > breakpoint && breakpoint > 2) break;
 				} 
 			}
 			}
+			}
 		
-	
-		
-		//If the difference between the root and the parent node is too big, delete the whole root
-		//IJ.log("The child level is" + this.isChild());
-		//if(this.isChild() != 0){
-		//float diff2 = getMaxPixelValue(rm) - getMeanPixelValue(rm);
-		//IJ.log("The removal diff is" + diff2);
-		//if(diff2 < thr/4){
-		//		delete(rm);
-		//}
-		//}
-			
-		
-		//if(fit.getValue(n2.x, n2.y) > autoThreshold) r.rmNode(n2);
-//		n = r.lastNode;
-//		if(fit.getValue(n.x, n.y) > autoThreshold) r.rmNode(n);
-	}
 	public float getMaxPixelValue(RootModel rm){
 		Node n = firstNode;		
 		Float max = 0f;
