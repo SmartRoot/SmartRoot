@@ -2736,10 +2736,7 @@ class Root{
 
 		float background = rm.fit.getValue(n.x, n.y+10);
 		double thr = (background - getMeanPixelValuePrev(rm))/4;
-
 		IJ.log("The threshold is" + thr + " The background is " + background + " Mean pix prev is " + getMeanPixelValuePrev(rm));
-		
-		if(thr < 3) thr = 3;
 		double corr = getMinPixelValue(rm)-getMinPixelValuePrev(rm);
 		double breakpoint = nNodes/20;
 		IJ.log( "The correction is " + corr+ " The breakpoint is" + breakpoint);
@@ -2776,7 +2773,7 @@ class Root{
 		if (nF.theta < 1.5*Math.PI) background = rm.fit.getValue(n.x-5, n.y-5);
 		if (nF.theta > 1.5*Math.PI) background = rm.fit.getValue(n.x+5, n.y-5);
 		IJ.log("theta is" + nF.theta + " background is" + background);
-		double thr = (background-getMeanPixelValuePrev(rm))/2;
+		double thr = (background-getMeanPixelValuePrev(rm))/4;
 		double breakpoint = nNodes/10;
 		IJ.log("The threshold is" + thr +" The breakpoint is" + breakpoint);
 		int count = 0;
