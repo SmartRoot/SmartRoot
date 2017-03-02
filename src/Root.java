@@ -2732,16 +2732,15 @@ class Root{
 		IJ.log("Crop Root level" + isChild());
 		
 		Node n = lastNode;
-		Node nF = firstNode;
 		rm.fit.checkImageProcessor();
 		
 		//Calculate threshold based on background, find background point based on node direction
-		float background = rm.fit.getValue(n.x, n.y+40);
-		if (isChild() > 0){
-		if (nF.theta < 1.5*Math.PI) background = rm.fit.getValue(n.x-5, n.y-5);
-		if (nF.theta > 1.5*Math.PI) background = rm.fit.getValue(n.x+5, n.y-5);
-		}
-		double thr = (background-getMeanPixelValuePrev(rm))/4;
+		float background = sampleBackground(rm);
+		//if (isChild() > 0){
+		//if (nF.theta < 1.5*Math.PI) background = rm.fit.getValue(n.x-5, n.y-5);
+		//if (nF.theta > 1.5*Math.PI) background = rm.fit.getValue(n.x+5, n.y-5);
+		//}
+		double thr = (background-getMaxPixelValuePrev(rm))/4;
 		IJ.log(" background is" + background + " Threshold is" + thr);
 		
 		//Use info to adjust "stabilizing points
@@ -2771,11 +2770,22 @@ class Root{
 					countY = countY+1;
 					countN = 0;
 				}
-				if(countN > NodeDiff && countN > 1) rmEndOfRoot(n, rm, true);
+				if(countN > 1) rmEndOfRoot(n, rm, true);
 				if(countY > breakpoint && breakpoint > 2) break;
 				} 
 			}
 			}
+	}
+	
+	public float sampleBackground(RootModel rm){
+		Node n = lastNode;
+		rm.fit.checkImageProcessor();
+		float background = rm.fit.getValue(n.x, n.y+10);
+		for(int i = 0 ; i < 40 ; i++){
+			float bg =  rm.fit.getValue(n.x, n.y+i);
+			if (bg > background) background = bg;
+		}
+		return background;
 	}
 	
 	public float getMaxPixelValue(RootModel rm){
