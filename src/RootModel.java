@@ -5305,11 +5305,9 @@ class RootModel extends WindowAdapter implements TreeModel{
     	Root r;
     	for(int i = rootList.size(); i > 0; i--){
 			r =  (Root) rootList.get(i-1);
-			IJ.log("Root " + i);
 			if(r.nNodes < 3){
 				selectedRoot = r;
 				deleteSelectedRoot();
-				IJ.log("root deleted");
 			}
 		}
     }
@@ -5377,13 +5375,10 @@ class RootModel extends WindowAdapter implements TreeModel{
     
     
     public void cropTracing(){
-    	IJ.log("size of rootlist is "+ rootList.size());
     	for(int i = 0; i < rootList.size() ; i++){
-        	IJ.log("size of rootlist is "+ rootList.size());
 			Root r = (Root) rootList.get(i);
 			r.cropRoot(this);
 			}
-		//appendTracing();
    		}   	
     
     public void reCenterAllNodes(){

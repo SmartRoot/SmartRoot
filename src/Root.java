@@ -2729,7 +2729,7 @@ class Root{
 	}
 	
 	public void cropRoot(RootModel rm){
-		IJ.log("Crop Root level" + isChild());
+		IJ.log("Crop Root level" + isChild() + "in the new versioN!");
 		
 		Node n = lastNode;
 		rm.fit.checkImageProcessor();
@@ -2737,7 +2737,7 @@ class Root{
 		//Calculate threshold based on background, find background point based on node direction
 		float background = sampleBackground(rm);
 		double base = background-getMinPixelValue(rm);
-		double thr = base/6;
+		double thr = base/4;
 		if (thr < 10) thr = 10;
 		IJ.log(" background is" + background + " Threshold is" + thr);
 		
@@ -2764,8 +2764,8 @@ class Root{
 					countY = countY+1;
 					countN = 0;
 				}
-				if(countY > 5) break;
-				if(countN > 2) rmEndOfRoot(n, rm, true);
+				if(countY > 5 && isChild() == 0) break;
+				if(countN > 1) rmEndOfRoot(n, rm, true);
 				}
 			}
 			}
