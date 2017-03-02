@@ -2736,43 +2736,37 @@ class Root{
 		
 		//Calculate threshold based on background, find background point based on node direction
 		float background = sampleBackground(rm);
-		//if (isChild() > 0){
-		//if (nF.theta < 1.5*Math.PI) background = rm.fit.getValue(n.x-5, n.y-5);
-		//if (nF.theta > 1.5*Math.PI) background = rm.fit.getValue(n.x+5, n.y-5);
-		//}
-		double thr = (background-getMaxPixelValuePrev(rm))/4;
+		double base = background-getMinPixelValue(rm);
+		double thr = base/6;
+		if (thr < 10) thr = 10;
 		IJ.log(" background is" + background + " Threshold is" + thr);
 		
 		//Use info to adjust "stabilizing points
-		double corr = getMinPixelValue(rm)-getMinPixelValuePrev(rm);
-		double MeanDiff = (getMeanPixelValue(rm)-corr) - getMeanPixelValuePrev(rm);
-		double NodeDiff = (MeanDiff*nNodes)/getMeanPixelValuePrev(rm);
 		int countY = 0;
 		int countN = 0;
-		double breakpoint = nNodes/20;
+		double breakpoint = nNodes/30;
 		if (isChild() > 0) breakpoint = nNodes/10;
-		IJ.log( "The correction is " + corr+ " The breakpoint is" + breakpoint);
+		IJ.log(" The breakpoint is" + breakpoint );
 		
 		//Loop over nodes
 		if(this != null){
 			while(n != firstNode){
 				if(n != null){
-				double prev = n.prevPixValue;
 				float pix = rm.fit.getValue(n.x, n.y);
-				double diff = pix-prev;
+				double diff = background-pix;
+				IJ.log("prev="+background+"pix="+pix+",diff="+diff);
 				n = n.parent;
-				IJ.log("prev="+prev+"pix="+pix+",diff="+diff);
-				if(diff > thr){
+				if(diff < thr){
 					countY = 0;
 					countN = countN+1;
 				}
-				if(diff < thr) {
+				if(diff > thr) {
 					countY = countY+1;
 					countN = 0;
 				}
-				if(countN > 1) rmEndOfRoot(n, rm, true);
-				if(countY > breakpoint && breakpoint > 2) break;
-				} 
+				if(countY > 5) break;
+				if(countN > 2) rmEndOfRoot(n, rm, true);
+				}
 			}
 			}
 	}
