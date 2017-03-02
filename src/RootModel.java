@@ -5372,8 +5372,7 @@ class RootModel extends WindowAdapter implements TreeModel{
     
     
     public void cropSelectedRoot(){
-    	if (selectedRoot.isChild() == 0) selectedRoot.cropMainRoot(this);
-    	if (selectedRoot.isChild() > 0) selectedRoot.cropLatRoot(this);
+    	selectedRoot.cropRoot(this);
     }
     
     
@@ -5382,9 +5381,7 @@ class RootModel extends WindowAdapter implements TreeModel{
     	for(int i = 0; i < rootList.size() ; i++){
         	IJ.log("size of rootlist is "+ rootList.size());
 			Root r = (Root) rootList.get(i);
-			IJ.log("Root" + i);
-			if(r.isChild()  == 0) r.cropMainRoot(this);
-			if(r.isChild() > 0) r.cropLatRoot(this);
+			r.cropRoot(this);
 			}
 		//appendTracing();
    		}   	
