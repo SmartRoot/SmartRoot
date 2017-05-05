@@ -41,6 +41,8 @@
 import java.awt.geom.*;
 import java.io.*;
 
+import ij.IJ;
+
 
 /** 
  * @author Xavier Draye - Universit� catholique de Louvain
