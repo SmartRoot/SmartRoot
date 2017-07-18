@@ -618,6 +618,7 @@ class Node {
       dataOut.write("   <birthTime>" + Float.toString(birthTime) + "</birthTime>" + nL);
       dataOut.write("  </Node>" + nL);
       }
-   }
 
+	
+}
 

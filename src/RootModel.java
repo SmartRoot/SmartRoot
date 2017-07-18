@@ -38,39 +38,66 @@
  */
 
 
-import ij.*;
-import ij.plugin.filter.ParticleAnalyzer;
-import ij.process.*;
-import ij.gui.PolygonRoi;
-import ij.gui.Roi;
-import ij.io.*;
-import ij.measure.*;
-
-import java.awt.*;
-import java.awt.event.*;
-import java.awt.geom.*;
+import java.awt.AlphaComposite;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics2D;
+import java.awt.Point;
+import java.awt.Rectangle;
+import java.awt.RenderingHints;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 //import java.awt.image.BufferedImage;
 //import java.awt.image.RenderedImage;
-import java.awt.font.*;
-import java.sql.*;
+import java.awt.font.FontRenderContext;
+import java.awt.font.TextLayout;
+import java.awt.geom.AffineTransform;
+import java.awt.geom.GeneralPath;
+import java.awt.geom.Line2D;
+import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.List;
+import java.util.TreeMap;
+import java.util.UUID;
+import java.util.Vector;
 
 //import javax.imageio.ImageIO;
-import javax.swing.*;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.event.TreeModelEvent;
 import javax.swing.event.TreeModelListener;
 import javax.swing.tree.TreeModel;
 import javax.swing.tree.TreePath;
-
-import java.util.*;
-import java.util.List;
-import java.io.*;
-
 // XML file support
-import javax.xml.parsers.DocumentBuilder; 
-import javax.xml.parsers.DocumentBuilderFactory;  
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-import org.xml.sax.SAXException;  
+import org.xml.sax.SAXException;
+
+import ij.IJ;
+import ij.ImagePlus;
+import ij.gui.PolygonRoi;
+import ij.gui.Roi;
+import ij.io.FileInfo;
+import ij.io.Opener;
+import ij.measure.Calibration;
+import ij.measure.Measurements;
+import ij.measure.ResultsTable;
+import ij.plugin.filter.ParticleAnalyzer;
+import ij.process.BinaryProcessor;
+import ij.process.ByteProcessor;
+import ij.process.ImageProcessor;  
 
 //import unused.RLDProfile2D;
 
@@ -1441,7 +1468,7 @@ class RootModel extends WindowAdapter implements TreeModel{
         	 List<Mark> l = new ArrayList<Mark>();
         	 for(int j = 0; j < r.markList.size(); j++){
         		 Mark v = r.markList.get(j);
-        		 if(v.type == Mark.FREE_TEXT || v.type == Mark.NUMBER){
+        		 if(v.type == Mark.NUMBER){
         			int k = 0;
         		 	while(k < l.size() && Float.valueOf(l.get(k).value) < Float.valueOf(v.value)) k++;
             		l.add(k, v);	  
@@ -1455,7 +1482,7 @@ class RootModel extends WindowAdapter implements TreeModel{
         		 mPrev.createGraphics();
                  Point p = r.getLocation(m.lPos * pixelSize);
         		 float growth = ((m.lPos * pixelSize) - (mPrev.lPos * pixelSize))/(Float.valueOf(m.value)-Float.valueOf(mPrev.value));
-        		 float vector_theta = NodeFitter.vectToTheta((float) (m.xLabel - mPrev.xLabel),(float) (m.yLabel-mPrev.yLabel));
+        		 double vector_theta = NodeFitter.vectToTheta((float) (m.xLabel - mPrev.xLabel),(float) (m.yLabel-mPrev.yLabel));
         		 double vector_angle = ((vector_theta/Math.PI)*180)-270;
 
         		 /**Go over nodes and calculate average node direction between marks. **/
@@ -3153,8 +3180,10 @@ class RootModel extends WindowAdapter implements TreeModel{
  	  if (multiply == JOptionPane.YES_OPTION){
 	   		for(int i = 0; i < rootList.size(); i++){
 				Root r = (Root) rootList.get(i);
-				for(int j = 0; j < 3; j++) r.multiplyNodes();
-	   		}}
+				if (r.isChild() > 0) for(int j = 0; j < 4; j++) r.multiplyNodes();
+				else for(int j = 0; j < 3; j++) r.multiplyNodes();
+				}
+	   		}
 	   //Save datafile
 	   this.saveToRSML();
 	   	

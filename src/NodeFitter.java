@@ -174,6 +174,8 @@ class NodeFitter {
     */
    public void clearThresholdMemory() {lastThreshold = 0.0f; }
    
+   
+   
    /**
  	 * Automatically recenters a root node using the behavior defined by flag. ThetaStep and rStep specify
        respectively the angle and radius step for border search. Narrow = false forces the search

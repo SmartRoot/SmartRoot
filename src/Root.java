@@ -2752,6 +2752,7 @@ class Root{
 		if(this != null){
 			while(n != firstNode){
 				if(n != null){
+				reCenterNode(n, rm, thr);
 				float pix = rm.fit.getValue(n.x, n.y);
 				double diff = background-pix;
 				IJ.log("prev="+background+"pix="+pix+",diff="+diff);
@@ -2892,5 +2893,42 @@ class Root{
 		}
 	}	
 	
+	//recenter node based on pixel value (find the width of the root and make sure to put the root in the right position)
+	public  void reCenterNode(Node n, RootModel rm, double thr){
+		float dirP = (float) (n.theta - 0.5* Math.PI);
+		float dirM = (float) (n.theta - 0.5* Math.PI);
+		float borderX1 = n.x;
+		float borderX2 = n.x;
+		float borderY1 = n.y;
+		float borderY2 = n.y;
+		
+		float ValueCurrent = rm.fit.getValue(n.x, n.y);
+		
+		for(int i = 0 ; i < 10 ; i++){
+			float dirPX = n.x + (float) (Math.cos(dirP) * 0.2*i);
+		    float dirPY = n.y + (float) (-Math.sin(dirP) * 0.2*i);
+			float DiffP = ValueCurrent - rm.fit.getValue(dirPX, dirPY);
+			if(DiffP > thr) {
+				borderX1 = dirPX;
+				borderY1 = dirPY;
+				break;
+			}
+		}
+		for(int i = 0 ; i < 10 ; i++){
+			float dirMX = n.x + (float) (Math.cos(dirM) * 0.2*i);
+		    float dirMY = n.y + (float) (-Math.sin(dirM) * 0.2*i);
+			float DiffM = ValueCurrent - rm.fit.getValue(dirMX, dirMY);
+			if(DiffM > thr) {
+				borderX2 = dirMX;
+				borderY2 = dirMY;
+				break;
+			}
+		}
+		float newX = borderX2 + (borderX1-borderX2)/2;
+		float newY = borderY2 + (borderY1-borderY2)/2;
+	
+		n.x = newX;
+		n.y = newY;
+	}
 	
   }
