@@ -2731,7 +2731,7 @@ class Root{
 	}
 	
 	public void cropRoot(RootModel rm){
-		IJ.log("Crop Root level" + isChild() + "in the new versioN!");
+		IJ.log("Crop Root level" + isChild());
 		
 		Node n = lastNode;
 		rm.fit.checkImageProcessor();
@@ -2746,9 +2746,6 @@ class Root{
 		//Use info to adjust "stabilizing points
 		int countY = 0;
 		int countN = 0;
-		double breakpoint = nNodes/30;
-		if (isChild() > 0) breakpoint = nNodes/10;
-		IJ.log(" The breakpoint is" + breakpoint );
 		
 		//Loop over nodes
 		if(this != null){
