@@ -2844,7 +2844,6 @@ class RootModel extends WindowAdapter implements TreeModel{
       if(!globalDPI) dpi = Float.valueOf(nodeDOM.getAttributes().getNamedItem("dpi").getNodeValue()).floatValue();
       //dpi = Float.valueOf(nodeDOM.getAttributes().getNamedItem("dpi").getNodeValue()).floatValue();
       
-      IJ.log("DPI = "+dpi);
       
       org.w3c.dom.Node n = nodeDOM.getAttributes().getNamedItem("nextAutoRootID");
       if (n != null) nextAutoRootID = Integer.valueOf(n.getNodeValue()).intValue();
@@ -2863,7 +2862,10 @@ class RootModel extends WindowAdapter implements TreeModel{
         	 Root r;
             if(version < 3.2){ 
             	r = new Root(dpi, getRootKey(), this);
-            	r.read(nodeDOM);    
+            	r.read(nodeDOM);  
+	          	  if(r.validate()){
+	        		  rootList.add(r);
+	        	  }
             }            
             else r = new Root(dpi, nodeDOM, false, null, this, null);
           	}
@@ -2876,7 +2878,8 @@ class RootModel extends WindowAdapter implements TreeModel{
             }
          nodeDOM = nodeDOM.getNextSibling();
        }
-      this.deleteSmallRoots();
+      IJ.log(">>>>>>>>>>>>>>>>>   "+rootList.size());
+//      this.deleteSmallRoots();
       if(version < 3.2){
     	  for(int i = 0; i < rootList.size(); i++){
 	    	  Root r1 = (Root) rootList.get(i);
@@ -4226,6 +4229,7 @@ class RootModel extends WindowAdapter implements TreeModel{
 			}
   		}
 	}
+	Collections.sort(rootList, (o1, o2) -> (int) (o1.getDistanceFromBase() - o2.getDistanceFromBase()));
 	long endD = System.currentTimeMillis();
 	SR.write((cr-1)+" laterals created in "+(endD - startD)+" ms");
 }
@@ -4299,6 +4303,7 @@ class RootModel extends WindowAdapter implements TreeModel{
 	  		}
 		}
 		long endD = System.currentTimeMillis();
+		Collections.sort(rootList, (o1, o2) -> (int) (o1.getDistanceFromBase() - o2.getDistanceFromBase()));
 		SR.write((rootList.size() - ls)+" lateral(s) created in "+(endD - startD)+" ms");
    }
 

@@ -67,7 +67,6 @@ import java.awt.geom.*;
 //import javax.swing.table.*;
 import java.util.*;
 import java.util.List;
-import java.util.Collection;
 //XML file support
 //import javax.xml.parsers.DocumentBuilder; 
 //import javax.xml.parsers.DocumentBuilderFactory;  
@@ -76,7 +75,6 @@ import java.util.Collection;
 //import org.xml.sax.SAXException;  
 //import org.xml.sax.SAXParseException;
 import java.io.*;
-import java.util.UUID;
 
 import javax.swing.JOptionPane;
 
@@ -201,7 +199,9 @@ class Root{
 
       if(!common){
     	  read(parentDOM);
-    	  if(validate()) rm.rootList.add(this);
+    	  if(validate()){
+    		  rm.rootList.add(this);
+    	  }
       }
       else readRSML(parentDOM, rm, parentRoot, origin, scale);
       
@@ -1179,6 +1179,7 @@ class Root{
          else if (nName.equals("parentKey")) parentKey = nodeDOM.getFirstChild().getNodeValue();//Integer.valueOf(nodeDOM.getFirstChild().getNodeValue());
          
          else if (nName.equals("Node")) {
+
             n = addNode(0.0f, 0.0f, false);
             n.readXML(nodeDOM, false);
             }
@@ -1676,6 +1677,7 @@ class Root{
     */
    public void attachChild(Root r){
 	   childList.add(r);
+	   Collections.sort(childList, (o1, o2) -> (int) (o1.getDistanceFromBase() - o2.getDistanceFromBase()));
 	   setFirstChild();
 	   setLastChild();
 	   setChildDensity();

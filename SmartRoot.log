@@ -1,5 +1,11 @@
-SQL connection started
+The specified database was not found.
+You will not be able to write to a database.
+You will still be able to export to a .csv file.
 There is one instance of RootImageCanvas
+<<<<<<< HEAD
 2010.1302 / 865.70306
 There are no instances of RootImageCanvas
 SQL connection closed
+=======
+2017.4954 / 1019.5253
+>>>>>>> origin/master
