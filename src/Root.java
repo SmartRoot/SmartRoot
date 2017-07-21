@@ -2743,6 +2743,11 @@ class Root{
 		if (thr < 10) thr = 10;
 		IJ.log(" background is" + background + " Threshold is" + thr);
 		
+		//recenter Nodes
+		float totalX = reCenterNode(rm, thr);
+		
+		IJ.log("Total pixel correction by recentering is: " + totalX );
+		
 		//Use info to adjust "stabilizing points
 		int countY = 0;
 		int countN = 0;
@@ -2751,7 +2756,6 @@ class Root{
 		if(this != null){
 			while(n != firstNode){
 				if(n != null){
-				reCenterNode(n, rm, thr);
 				float pix = rm.fit.getValue(n.x, n.y);
 				double diff = background-pix;
 				IJ.log("prev="+background+"pix="+pix+",diff="+diff);
@@ -2893,41 +2897,51 @@ class Root{
 	}	
 	
 	//recenter node based on pixel value (find the width of the root and make sure to put the root in the right position)
-	public  void reCenterNode(Node n, RootModel rm, double thr){
-		float dirP = (float) (n.theta - 0.5* Math.PI);
-		float dirM = (float) (n.theta - 0.5* Math.PI);
-		float borderX1 = n.x;
-		float borderX2 = n.x;
-		float borderY1 = n.y;
-		float borderY2 = n.y;
-		
-		float ValueCurrent = rm.fit.getValue(n.x, n.y);
-		
-		for(int i = 0 ; i < 10 ; i++){
-			float dirPX = n.x + (float) (Math.cos(dirP) * 0.2*i);
-		    float dirPY = n.y + (float) (-Math.sin(dirP) * 0.2*i);
-			float DiffP = ValueCurrent - rm.fit.getValue(dirPX, dirPY);
-			if(DiffP > thr) {
-				borderX1 = dirPX;
-				borderY1 = dirPY;
-				break;
+	public float reCenterNode(RootModel rm, double thr){
+		Node n = firstNode;
+		float totalX = 0;
+		float count = 0;
+		while(n.child != null){
+			float dir = (float) (n.theta - 1.5* Math.PI);
+			float borderX1 = n.x;
+			float borderX2 = n.x;
+			float borderY1 = n.y;
+			float borderY2 = n.y;
+			
+			float ValueCurrent = rm.fit.getValue(n.x, n.y);
+			
+			for(int i = 0 ; i < 400 ; i++){
+				float dirPX = n.x + (float) (Math.cos(dir) * 0.2*i);
+			    float dirPY = n.y + (float) (-Math.sin(dir) *0.2*i);
+				float DiffP = rm.fit.getValue(dirPX, dirPY) - ValueCurrent;
+				if(DiffP > thr) {
+					borderX1 = dirPX;
+					borderY1 = dirPY;
+					count = count+1;
+					break;
+				}
 			}
-		}
-		for(int i = 0 ; i < 10 ; i++){
-			float dirMX = n.x + (float) (Math.cos(dirM) * 0.2*i);
-		    float dirMY = n.y + (float) (-Math.sin(dirM) * 0.2*i);
-			float DiffM = ValueCurrent - rm.fit.getValue(dirMX, dirMY);
-			if(DiffM > thr) {
-				borderX2 = dirMX;
-				borderY2 = dirMY;
-				break;
+			for(int i = 0 ; i < 400 ; i++){
+				float dirMX = n.x - (float) (Math.cos(dir) * 0.2*i);
+			    float dirMY = n.y - (float) (-Math.sin(dir) * 0.2*i);
+				float DiffM = rm.fit.getValue(dirMX, dirMY) - ValueCurrent;
+				if(DiffM > thr) {
+					borderX2 = dirMX;
+					borderY2 = dirMY;
+					count =count +1;
+					break;
+				}
 			}
+
+			totalX = count;
+			float newX = borderX2 + (borderX1-borderX2)/2;
+			float newY = borderY2 + (borderY1-borderY2)/2;
+		
+			n.x = newX;
+			n.y = newY;
+			n = n.child;
 		}
-		float newX = borderX2 + (borderX1-borderX2)/2;
-		float newY = borderY2 + (borderY1-borderY2)/2;
-	
-		n.x = newX;
-		n.y = newY;
+		return totalX;
 	}
 	
   }
