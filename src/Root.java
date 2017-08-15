@@ -2744,9 +2744,9 @@ class Root{
 		IJ.log(" background is" + background + " Threshold is" + thr);
 		
 		//recenter Nodes
-		float totalX = reCenterNode(rm, thr);
+		//float totalX = reCenterNode(rm, thr);
 		
-		IJ.log("Total pixel correction by recentering is: " + totalX );
+		//IJ.log("Total pixel correction by recentering is: " + totalX );
 		
 		//Use info to adjust "stabilizing points
 		int countY = 0;
@@ -2910,7 +2910,7 @@ class Root{
 			
 			float ValueCurrent = rm.fit.getValue(n.x, n.y);
 			
-			for(int i = 0 ; i < 400 ; i++){
+			for(int i = 0 ; i < 200 ; i++){
 				float dirPX = n.x + (float) (Math.cos(dir) * 0.2*i);
 			    float dirPY = n.y + (float) (-Math.sin(dir) *0.2*i);
 				float DiffP = rm.fit.getValue(dirPX, dirPY) - ValueCurrent;
@@ -2921,7 +2921,7 @@ class Root{
 					break;
 				}
 			}
-			for(int i = 0 ; i < 400 ; i++){
+			for(int i = 0 ; i < 200 ; i++){
 				float dirMX = n.x - (float) (Math.cos(dir) * 0.2*i);
 			    float dirMY = n.y - (float) (-Math.sin(dir) * 0.2*i);
 				float DiffM = rm.fit.getValue(dirMX, dirMY) - ValueCurrent;
