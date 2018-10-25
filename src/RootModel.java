@@ -847,7 +847,7 @@ class RootModel extends WindowAdapter implements TreeModel{
          Root r1 = (Root) rootList.get(i);
          Node n = r1.firstNode;
          if (r1 != r && r.contains(n.x, n.y)) { 
-            cropAtIntersection(r, n);
+//            cropAtIntersection(r, n);
             r1.calcTicks();
             r1.needsRefresh();
             }
@@ -5658,6 +5658,23 @@ class RootModel extends WindowAdapter implements TreeModel{
 //				    	tracingP.drawLine((int) (n1.x - (int) r.getXMinTotal())+50, (int) (n1.y - (int) r.getYMinTotal())+50, (int) (n.x - (int) r.getXMinTotal())+50, (int) (n.y - (int) r.getYMinTotal())+50);
 				    	tracingP.drawLine((int) n1.x, (int) n1.y , (int) n.x, (int) n.y);
 					}
+					
+					for(int jj = 0; jj < rr.childList.size(); jj++){
+						Root rrr =  (Root) rr.childList.get(jj);
+						n = rrr.firstNode;		
+						if(color) tracingImage.setColor(Color.blue);
+						else tracingImage.setColor(Color.black);
+						
+						while(n.child != null){
+							n1 = n;
+							n = n.child;
+							if(real) tracingP.setLineWidth((int) n.diameter);
+							else tracingP.setLineWidth(line);
+//					    	tracingP.drawLine((int) (n1.x - (int) r.getXMinTotal())+50, (int) (n1.y - (int) r.getYMinTotal())+50, (int) (n.x - (int) r.getXMinTotal())+50, (int) (n.y - (int) r.getYMinTotal())+50);
+					    	tracingP.drawLine((int) n1.x, (int) n1.y , (int) n.x, (int) n.y);
+						}
+					}
+					
 				}
 				if(split){
 					String p = path;

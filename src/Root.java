@@ -1114,7 +1114,7 @@ class Root{
       while(n != null){
     	  if(n.diameter == 0 || origin.equals("RootNav")){
     		  n.diameter = 3;
-    		  rm.fit.reCenter(n, 0.05f, 0.5f, false, 1);
+//    		  rm.fit.reCenter(n, 0.05f, 0.5f, false, 1);
     	  }
     	  n = n.child;
       }

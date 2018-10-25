@@ -349,7 +349,7 @@ public class SRWin extends JFrame implements ItemListener, ActionListener {
       splitPane.setDividerLocation(200); 
       splitPane.setPreferredSize(new Dimension(500, 300));
       
-      String[] list = {"Delete root(s)", "Delete mark(s)", "Delete all marks", "Rename root", "Attach parent", "Detach parent", "Detach child(ren)", "Find laterals"};
+      String[] list = {"Delete root(s)", "Delete mark(s)", "Delete all marks", "Rename root", "Attach parent", "Detach parent", "Detach child(ren)", "Find laterals", "Reverse orientation"};
       action = new JComboBox(list);
       action.setSelectedIndex(3);      
       
@@ -2281,6 +2281,17 @@ public class SRWin extends JFrame implements ItemListener, ActionListener {
 	    		cancel.setEnabled(false);
 	    	}
 	    }
+
+	    private void reverseOrientation(){
+	    	TreePath[] t = tree.getSelectionPaths();
+	    	for(int i = 0 ; i < t.length; i++){
+//		        Root root = (Root) t[i].getLastPathComponent();
+//	            root.detacheParent();
+	    		rm.selectRoot((Root) t[i].getLastPathComponent());
+	            rm.reverseSelectedRoot();
+	    	}
+            rm.repaint();
+	    }	    
 	    
 	    private void detachParent(){
 	    	TreePath[] t = tree.getSelectionPaths();
@@ -3356,6 +3367,10 @@ public class SRWin extends JFrame implements ItemListener, ActionListener {
 			rootListTree.detachParent();
 			rootListTree.refreshNodes();
 		}
+		if(a == "Reverse orientation"){
+			rootListTree.reverseOrientation();
+			rootListTree.refreshNodes();
+		}		
 		if(a == "Detach child(ren)"){
 			rootListTree.detachChildren();
 			rootListTree.refreshNodes();
