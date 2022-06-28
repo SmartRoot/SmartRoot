@@ -1792,7 +1792,7 @@ public class SRWin extends JFrame implements ItemListener, ActionListener {
           if (returnVal == JFileChooser.APPROVE_OPTION){ 
         	  String fName = fc.getSelectedFile().toString();
         	  if(!fName.endsWith(".csv")) fName = fName.concat(".csv");
-        	  csvFolderName.setText(fName);
+        	  csvFolderName.setText(fName.replace('\\', '/'));
           }
           else SR.write("Save command cancelled.");     
       }
@@ -1808,7 +1808,7 @@ public class SRWin extends JFrame implements ItemListener, ActionListener {
           if (returnVal == JFileChooser.APPROVE_OPTION){ 
         	  String fName = fc.getSelectedFile().toString();
         	  if(!fName.endsWith(".csv")) fName = fName.concat(".csv");
-        	  batchCSVFile.setText(fName);
+        	  batchCSVFile.setText(fName.replace('\\', '/'));
           }
           else SR.write("Save command cancelled.");     
       }
@@ -1820,7 +1820,7 @@ public class SRWin extends JFrame implements ItemListener, ActionListener {
 		   
           if (returnVal == JFileChooser.APPROVE_OPTION){ 
         	  String fName = fc.getSelectedFile().toString();
-        	  batchImageFolder.setText(fName);
+        	  batchImageFolder.setText(fName.replace('\\', '/'));
           }
           else SR.write("Choose folder cancelled.");     
       }
@@ -1833,7 +1833,7 @@ public class SRWin extends JFrame implements ItemListener, ActionListener {
 		   
           if (returnVal == JFileChooser.APPROVE_OPTION){ 
         	  String fName = fc.getSelectedFile().toString();
-        	  batchSourceFolder.setText(fName);
+        	  batchSourceFolder.setText(fName.replace('\\', '/'));
           }
           else SR.write("Choose folder cancelled.");     
       }
@@ -1854,7 +1854,7 @@ public class SRWin extends JFrame implements ItemListener, ActionListener {
         	  String fName = fc.getSelectedFile().toString();
 			  if(!fName.endsWith("."+(String) imageJCB.getSelectedItem())) 
 				  fName = changeExtension(fName, (String) imageJCB.getSelectedItem());
-        	  imageFolderName.setText(fName);
+        	  imageFolderName.setText(fName.replace('\\', '/'));
           }
           else SR.write("Save command cancelled.");     
       }
@@ -1864,7 +1864,7 @@ public class SRWin extends JFrame implements ItemListener, ActionListener {
 		  if(!fName.equals("")){
 			  if(!fName.endsWith("."+(String) imageJCB.getSelectedItem())) 
 				  fName = changeExtension(fName, (String) imageJCB.getSelectedItem());
-		  	imageFolderName.setText(fName);
+		  	imageFolderName.setText(fName.replace('\\', '/'));
 		  }
 	  }
   
