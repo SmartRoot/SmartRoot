@@ -86,8 +86,8 @@ import java.util.*;
 class RootImageCanvas extends ImageCanvas
                       implements ActionListener, KeyEventDispatcher {
 
-	private static final long serialVersionUID = -7813328146240598270L;
-	
+   private static final long serialVersionUID = -7813328146240598270L;
+   
    public RootModel rm;
    private static Toolbar IJTool = Toolbar.getInstance();
    protected ImagePlus imp;
@@ -102,6 +102,9 @@ class RootImageCanvas extends ImageCanvas
    public boolean popupOpen = false;
    public boolean lockMousePosition = false;
    private static int currentTool;
+   private int autoMarkType = 0;   // XD 20180811
+   private SRWin srWin = SRWin.getInstance();  // XD 20180811 (needed to set showMark when the Mark tool is selected) 
+
    
    private JMenuItem[] mi = new JMenuItem[55]; // popup
    private static final int TOOL_MARK = 0;
@@ -167,6 +170,7 @@ class RootImageCanvas extends ImageCanvas
    static private boolean shift_key_pressed = false;
    private float mouseX, mouseY;
    private KeyboardFocusManager kfm = KeyboardFocusManager.getCurrentKeyboardFocusManager();
+   protected long mousePressedTime;
 
    
    /**
@@ -552,28 +556,28 @@ class RootImageCanvas extends ImageCanvas
          SR.write("There are " + canvasList.size() + " instances of RootImageCanvas");
       }
 
-	/**
-	 * Attach the current root model
-	 * @param rm
-	 */
+   /**
+    * Attach the current root model
+    * @param rm
+    */
    public void attachRootModel(RootModel rm) {
       this.rm = rm;
    }
    
-	/**
-	 * Display the graphics
-	 */
+   /**
+    * Display the graphics
+    */
    public void paint(Graphics g) { 
       super.paint(g);
       if (rm != null) rm.paint((Graphics2D) g, false, true);
       }
 
-	/**
-	 * Set the mouse mode (tracing, mark, ...)
-	 * @param t
-	 */
+   /**
+    * Set the mouse mode (tracing, mark, ...)
+    * @param t
+    */
    private void setMode(int t) {
-	  
+     
       if (t == SR.TRACE_TOOL || t == SR.ANCHOR_TOOL) {
          mode = TRACE;
          }
@@ -587,21 +591,32 @@ class RootImageCanvas extends ImageCanvas
       setMode(Toolbar.getToolId());
       }
 
-	/**
-	 * Events triggers when the mouse is pressed
-	 * This method drives the popmenu events and initialize dragging 
-	 * (in case this event is followed by a mouseDrag()). 
+   /**
+    * Events triggers when the mouse is pressed
+    * This method drives the popmenu events and initialize dragging 
+    * (in case this event is followed by a mouseDrag()). 
      * Popup menu are handled here and not in mouseClicked() to be consistent with the parent class behavior
-	 */
+    */
    public void mousePressed(MouseEvent e) {
+      // SR.write("MOUSE_PRESSED");
+
+      // ADDED 20180731 XD
+      // Java does not fires the MouseClicked if a MouseDragged event occurred between the MousePressed and 
+      // MouseReleased events. With sensitive devices (such as a high resolution tablet), a small drag occurs
+      // most of the time, even during a simple click, thereby preventing Java to fire the MouseClicked event
+      // and all tracing-related work.
+      // I therefore propose to supersede Java behavior by detecting mouse clicks programmatically based on the
+      // time elapsed between the MousePressed and MouseReleased events
+      mousePressedTime = System.currentTimeMillis();
+
       // This method drives the popmenu events
       // and initialize dragging (in case this event is followed by a mouseDrag())
       // Popup menu are handled here and not in mouseClicked() to be consistent with the parent class behavior
-	   
+      
 
-	   if(currentPopup != null) return;
-	   
-	   
+      if(currentPopup != null) return;
+      
+      
       // Do not allow the user to change the tool via the IJtoolbar if tracing or twinmark
       if (e.getSource() == IJTool) {
          if (tracing) IJTool.setTool(SR.TRACE_TOOL);
@@ -637,7 +652,14 @@ class RootImageCanvas extends ImageCanvas
                lockMousePosition = false;
                return;
                }
-            }
+            // XD 20180811 Added next block
+            if (rm.getSelectedRoot() != null) {
+               markPopup.show(this, e.getX(), e.getY());
+               currentPopup = markPopup;
+               lockMousePosition = false;
+               return;
+               }
+           }
          if (tool == SR.TRACE_TOOL || tool == SR.LATERAL_TOOL) {
 
             int selection = rm.selectNode(mouseX, mouseY); // mouseClicked() assumes this has been done (connect & termination)
@@ -653,30 +675,30 @@ class RootImageCanvas extends ImageCanvas
                mi[DELETE_BASE_OF_ROOT].setEnabled(f);
                mi[ROOTID_ITEM].setText(rm.getSelectedRootID());
                if (root == RootModel.CHILD) {
-            	   mi[PARENTID_ITEM].setText(rm.getSelectedRootParentID());
-            	   mi[ORDER_ITEM].setText("order = "+rm.getSelectedRootOrder());
-            	   mi[PARENTID_ITEM].setVisible(true);
-            	   mi[DETACH_PARENT].setEnabled(true);
-            	   mi[DETACH_CHILDREN].setEnabled(false);
+                  mi[PARENTID_ITEM].setText(rm.getSelectedRootParentID());
+                  mi[ORDER_ITEM].setText("order = "+rm.getSelectedRootOrder());
+                  mi[PARENTID_ITEM].setVisible(true);
+                  mi[DETACH_PARENT].setEnabled(true);
+                  mi[DETACH_CHILDREN].setEnabled(false);
                }
                else if(root == RootModel.PARENT){
-            	   mi[PARENTID_ITEM].setVisible(false);
-            	   mi[ORDER_ITEM].setText("order = "+rm.getSelectedRootOrder());
-            	   mi[DETACH_CHILDREN].setEnabled(true);
-            	   mi[DETACH_PARENT].setEnabled(false);
+                  mi[PARENTID_ITEM].setVisible(false);
+                  mi[ORDER_ITEM].setText("order = "+rm.getSelectedRootOrder());
+                  mi[DETACH_CHILDREN].setEnabled(true);
+                  mi[DETACH_PARENT].setEnabled(false);
                }
                else if(root == RootModel.CHILDPARENT){
-            	   mi[PARENTID_ITEM].setText(rm.getSelectedRootParentID());
-            	   mi[ORDER_ITEM].setText("order = "+rm.getSelectedRootOrder());
-            	   mi[PARENTID_ITEM].setVisible(true);
-            	   mi[DETACH_PARENT].setEnabled(true);
-            	   mi[DETACH_CHILDREN].setEnabled(true);
+                  mi[PARENTID_ITEM].setText(rm.getSelectedRootParentID());
+                  mi[ORDER_ITEM].setText("order = "+rm.getSelectedRootOrder());
+                  mi[PARENTID_ITEM].setVisible(true);
+                  mi[DETACH_PARENT].setEnabled(true);
+                  mi[DETACH_CHILDREN].setEnabled(true);
                }
                else if(root == RootModel.ROOT){
-            	   mi[PARENTID_ITEM].setVisible(false);
-            	   mi[ORDER_ITEM].setText("order = "+rm.getSelectedRootOrder());
-            	   mi[DETACH_CHILDREN].setEnabled(false);
-            	   mi[DETACH_PARENT].setEnabled(false);
+                  mi[PARENTID_ITEM].setVisible(false);
+                  mi[ORDER_ITEM].setText("order = "+rm.getSelectedRootOrder());
+                  mi[DETACH_CHILDREN].setEnabled(false);
+                  mi[DETACH_PARENT].setEnabled(false);
                }
                nodePopup.show(this, e.getX(), e.getY());
                currentPopup = nodePopup;
@@ -704,23 +726,25 @@ class RootImageCanvas extends ImageCanvas
             }
          return;
          }
-      if (tool == SR.MARK_TOOL && IJ.spaceBarDown() == false) {
-         if (rm.getSelectedRoot() != null) {
-            markPopup.show(this, e.getX(), e.getY());
-            currentPopup = markPopup;
-            lockMousePosition = true;
-            }
-         return;
-         }
+      
+      // XD 20180811 block commented out 
+//      if (tool == SR.MARK_TOOL && IJ.spaceBarDown() == false) {
+//         if (rm.getSelectedRoot() != null) {
+//            markPopup.show(this, e.getX(), e.getY());
+//            currentPopup = markPopup;
+//            lockMousePosition = true;
+//            }
+//         return;
+//         }
       
       super.mousePressed(e);
       }
 
 
-	/**
-	 * Show the popup menu
-	 * @param e
-	 */
+   /**
+    * Show the popup menu
+    * @param e
+    */
    public void showPopup(MouseEvent e) {
       int t = Toolbar.getToolId();
       mi[TOOL_CROSSHAIR].setEnabled(t != Toolbar.CROSSHAIR);
@@ -736,35 +760,52 @@ class RootImageCanvas extends ImageCanvas
       currentPopup = popup;
       }
 
-	/**
-	 * This is where nodes are traced.
-	 * If right-click + TRACE_TOOL, selectNode() was already called on the RootModel (during MousePressed())
-	 * Same for left-click + TRACE_TOOL or MARK_TOOL
-	 */
+   // XD 20180811
+   // The whole method body has been moved to the new method processMouseClickedEvent() 
    public void mouseClicked(MouseEvent e) {
-     // This is where nodes are traced.
+      super.mouseClicked(e);
+      // SR.write("MOUSE_CLICKED");
+   }
+
+      
+   /**
+    * 
+    * This is where nodes are traced.
+    * If right-click + TRACE_TOOL, selectNode() was already called on the RootModel (during MousePressed())
+    * Same for left-click + TRACE_TOOL or MARK_TOOL
+    */
+   // XD 20180811 Method created (body was previously in mouseClicked()
+   protected void processMouseClickedEvent(MouseEvent e) {
+      // SR.write("SOFT_MOUSE_CLICKED");
+
+      // This is where nodes are traced.
       // If right-click + TRACE_TOOL, selectNode() was already called on the RootModel (during MousePressed())
       // Same for left-click + TRACE_TOOL or MARK_TOOL
-     if (e.getSource() == IJTool) {
+      if (e.getSource() == IJTool) {
          // Make sure we are working with the right tool
          setMode(Toolbar.getToolId());
+         // XD 201808 block added
+         if (Toolbar.getToolId() == SR.MARK_TOOL) {
+            srWin.setDisplayMarks(true);    
+            IJTool.repaint(); // srWin.setDisplayMarks(true) seems to mess up the painting of IJTool. Not sure why...
+         }
          return;
       }
-     
+
       drag = 0; // Exit drag mode
       if (currentPopup != null){
-		   if(popupOpen){
-			   currentPopup = null;
-			   popupOpen = false;
-		   }
-		   popupOpen = true;
-    	  
-		  
-    	  return; // do not process this click further if its MOUSE_PRESSED event issued a popup.
+         if(popupOpen){
+            currentPopup = null;
+            popupOpen = false;
+         }
+         popupOpen = true;   // TODO: 20180731 is "else" missing ?
+        
+        
+        return; // do not process this click further if its MOUSE_PRESSED event issued a popup.
       }
       int tool = Toolbar.getToolId();
       if (tool == SR.TRACE_TOOL && IJ.spaceBarDown() == false) {
-     	  
+        
          if (e.getClickCount() == 2) {
             rm.notifyContinueRootEnd(); // WORKS OK, BUT ROOT MODEL MIGHT REPAINT BEFORE ASKING FOR A NAME
             tracing = false;
@@ -783,7 +824,7 @@ class RootImageCanvas extends ImageCanvas
             // Trigger the auto�ated tracing of laterals once the root is traced
             if(getModifiers(e) == RootModel.AUTO_TRACE & SR.prefs.getBoolean("autoFind", false)){
                 rm.selectRoot(rm.rootList.get(rm.rootList.size()-1));
-            	rm.findLaterals2();
+               rm.findLaterals2();
             }
          }
          repaint();
@@ -794,31 +835,33 @@ class RootImageCanvas extends ImageCanvas
          rm.addRegistrationAnchor(offScreen2DX(e.getX()) - 0.5f, offScreen2DY(e.getY()) - 0.5f);
          repaint();
          }
-      if (tool == SR.MARK_TOOL && IJ.spaceBarDown() == false && tracingTwinMark) {
+      if (tool == SR.MARK_TOOL && IJ.spaceBarDown() == false /* && tracingTwinMark */) {    // XD 20180811 part of expression commented out 
          if ((e.isPopupTrigger() == true || e.getButton() == 3)) return;
-         tracingTwinMark = rm.setTwinPosition(); // validates the twin mark position (e.g. if the user clicks in a different root)
+         // XD 20180811 (next two lines changed)
+         if (tracingTwinMark) tracingTwinMark = rm.setTwinPosition(); // validates the twin mark position (e.g. if the user clicks in a different root)
+         else if (rm.getSelectedRoot() != null) addMark(autoMarkType);
          repaint();
          }
       if (tool == SR.LATERAL_TOOL && IJ.spaceBarDown() == false) {
-    	  if(rm.getSelectedRoot() != null) rm.traceLateral(offScreenX(e.getX()), offScreenY(e.getY()));
-    	  else SR.write("Please place your cursor near an already traced root");
-    	  repaint();
+        if(rm.getSelectedRoot() != null) rm.traceLateral(offScreenX(e.getX()), offScreenY(e.getY()));
+        else SR.write("Please place your cursor near an already traced root");
+        repaint();
           }
-      super.mouseClicked(e);
       }
    
-	/**
-	 * Events when the moused is dragged. Mainly when a node is moved
-	 */
+   /**
+    * Events when the moused is dragged. Mainly when a node is moved
+    */
    public void mouseDragged(MouseEvent e) {
+      // SR.write("MOUSE_DRAGGED");
       if (e.getSource() == IJTool) return;
       if (drag >= 1) {
          drag = 2;  // drag = 2 : dragging
          rm.moveSelectedNode(offScreen2DX(e.getX()), offScreen2DY(e.getY()), getModifiers(e));
          repaint();
          if(rm.getSelectedRoot().parent != null && rm.getSelectedRoot().parent.lastChild == rm.getSelectedRoot()){
-        	 rm.getSelectedRoot().setParentNode();
-        	 rm.getSelectedRoot().parent.setLastChild();
+          rm.getSelectedRoot().setParentNode();
+          rm.getSelectedRoot().parent.setLastChild();
          }
          return;
          }
@@ -826,57 +869,70 @@ class RootImageCanvas extends ImageCanvas
       }
    
    /**
- 	* Action triggered  with the release of the mouse
- 	*/
+   * Action triggered  with the release of the mouse
+   * CHANGED XD 20180731 XD
+   */
    public void mouseReleased(MouseEvent e) {
-	   
-	   if (currentPopup != null) return; // do not process this click further if its MOUSE_PRESSED event issued a popup.
-	   
-	   if (e.getSource() == IJTool) return;
+      // SR.write("MOUSE_RELEASED");
+      if (processMouseReleased(e) == 0) super.mouseReleased(e);
+
+      // ADDED XD 20180731 XD
+      if (System.currentTimeMillis() - mousePressedTime <= 200) processMouseClickedEvent(e);
+      }      
+     
+   /* ADDED XD 20180731 XD to allow soft-based processing of mouse clicked */
+   protected int processMouseReleased(MouseEvent e) {
+      
+      if (currentPopup != null) return -1; // do not process this click further if its MOUSE_PRESSED event issued a popup.
+      
+      if (e.getSource() == IJTool) return -1;
       if (drag == 2) {
 
          drag = 0; // drag = 0 : leaving drag operation; not dragging 
          if (e.isAltDown()){ rm.rebuildFromSelectedNode(offScreen2DX(e.getX()),
                                                        offScreen2DY(e.getY()), getModifiers(e));
-	         // Trigger the auto�ated tracing of laterals once the root is traced
-	         if(getModifiers(e) == RootModel.AUTO_TRACE & SR.prefs.getBoolean("autoFind", false)){
-	             rm.selectRoot(rm.rootList.get(rm.rootList.size()-1));
-	         	rm.findLaterals2();
-	         	
-	         }
+            // Trigger the auto�ated tracing of laterals once the root is traced
+            if(getModifiers(e) == RootModel.AUTO_TRACE & SR.prefs.getBoolean("autoFind", false)){
+                rm.selectRoot(rm.rootList.get(rm.rootList.size()-1));
+               rm.findLaterals2();
+               
+            }
          }
          else rm.rebuildSelectedNode();
          repaint();
-         return;
+         return -1;
          }
       drag = 0;
-      super.mouseReleased(e);
+      return 0;
+      
+     
+
       }
    
-	/**
-	 * 
-	 */
+   /**
+    * 
+    */
    public void mouseExited(MouseEvent e) {
       super.mouseExited(e);
       }
 
-	/**
-	 * 
-	 */
+   /**
+    * 
+    */
    public void mouseEntered(MouseEvent e) {
       super.mouseEntered(e);
       }
 
-	/**
-	 * Actions when the mouse is moved around
-	 */
+   /**
+    * Actions when the mouse is moved around
+    */
    public void mouseMoved(MouseEvent e) {
       if (e.getSource() == IJTool) return;
       super.mouseMoved(e);
       
       if (lockMousePosition) return;
       if (mode == RULER) {
-    	  
+        
          rm.makeRulerLine(offScreen2DX(e.getX()), offScreen2DY(e.getY()));
          Rectangle r = rm.getRulerClipRect();
          repaint(r.x, r.y, r.width, r.height);
@@ -891,22 +947,22 @@ class RootImageCanvas extends ImageCanvas
          }
       }
 
-	/**
-	 * 
-	 * @return
-	 */
-   public boolean isRulerMode() {return (mode == RULER); }
-	
    /**
-	 * 
-	 */
+    * 
+    * @return
+    */
+   public boolean isRulerMode() {return (mode == RULER); }
+   
+   /**
+    * 
+    */
    public void tracingDone() {tracing = false;}
    
-	/**
-	 * Get the mouse modifiers (SHIFT, CONTROL and ALT)
-	 * @param e
-	 * @return
-	 */
+   /**
+    * Get the mouse modifiers (SHIFT, CONTROL and ALT)
+    * @param e
+    * @return
+    */
    private int getModifiers(MouseEvent e) {
       int flag = 0;
       if (e.isShiftDown() && !e.isAltDown()) flag |= RootModel.SNAP_TO_BORDER;
@@ -915,10 +971,10 @@ class RootImageCanvas extends ImageCanvas
       return flag;
       }
 
-	/**
-	 * 
-	 * @param e
-	 */
+   /**
+    * 
+    * @param e
+    */
    public void itemStateChanged(ItemEvent e) {
       currentPopup = null;
       lockMousePosition = false;
@@ -953,6 +1009,7 @@ class RootImageCanvas extends ImageCanvas
          setMode();
          }
       else if (ac == "TOOL_MARK") {
+         srWin.setDisplayMarks(true);   // XD 20180811 Line added
          IJTool.setTool(SR.MARK_TOOL);
          setMode();
          }
@@ -1025,26 +1082,26 @@ class RootImageCanvas extends ImageCanvas
           repaint();
           }
       else if (ac == "DETACHE_CHILDREN") {
-    	  int opt = JOptionPane.showConfirmDialog(null, "Do you want to delete all the children?",
-    			  "Delete option", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+        int opt = JOptionPane.showConfirmDialog(null, "Do you want to delete all the children?",
+              "Delete option", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
           if (opt == JOptionPane.YES_OPTION){
-	    	  rm.detacheAllChilds();
-	          repaint();
+           rm.detacheAllChilds();
+             repaint();
           }
           }
      
       else if (ac == "AUTO_DRAW") {
-    	  if(imp.getRoi() != null && imp.getRoi().isLine()){
-    		  Line l = (Line) imp.getRoi();
-    		  rm.autoDrawRoot(l.x1, l.y1, l.x2, l.y2, l.getPixels());
+        if(imp.getRoi() != null && imp.getRoi().isLine()){
+           Line l = (Line) imp.getRoi();
+           rm.autoDrawRoot(l.x1, l.y1, l.x2, l.y2, l.getPixels());
               repaint();
-    	  }
-    	  else JOptionPane.showMessageDialog (null, "Please draw a line","ROI error", JOptionPane.ERROR_MESSAGE);
+        }
+        else JOptionPane.showMessageDialog (null, "Please draw a line","ROI error", JOptionPane.ERROR_MESSAGE);
           
       }
       
       else if (ac == "DELETE_SMALL_ROOTS") {
-    	  SR.write("delete small roots");
+        SR.write("delete small roots");
           rm.deleteSmallRoots();
           repaint();          
       }
@@ -1085,45 +1142,45 @@ class RootImageCanvas extends ImageCanvas
          }
       else if (ac == "FILE_IMPORT") {
           
-    	  GenericDialog gd = new GenericDialog("Tracing scale");
+        GenericDialog gd = new GenericDialog("Tracing scale");
           gd.addNumericField("Scaling: ", 1, 1);
           gd.showDialog();
           if (gd.wasCanceled()) return;
-          float scale = (float) gd.getNextNumber();	 
+          float scale = (float) gd.getNextNumber();    
           
-    	  if(rm.readSeedDataFile(false, scale)){
-	    	  
-    		  repaint();
-	    	  
-	    	  int opt = JOptionPane.showConfirmDialog(null, "Is the tracing OK?",
-				  "Tracing import", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);	    	  
-	    	  if (opt == JOptionPane.NO_OPTION){
-	    		  new TranslateDialog(rm);
-	    	  }
-	    	  
-   	  
-    	  }
+        if(rm.readSeedDataFile(false, scale)){
+           
+           repaint();
+           
+           int opt = JOptionPane.showConfirmDialog(null, "Is the tracing OK?",
+              "Tracing import", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);          
+           if (opt == JOptionPane.NO_OPTION){
+              new TranslateDialog(rm);
+           }
+           
+        
+        }
       }
       
       else if (ac == "FILE_IMPORT_COMMON") {
-    	  rm.readRSML(null);
-    	  repaint();
+        rm.readRSML(null);
+        repaint();
       }
       
       else if (ac == "FILE_IMPORT_SAME") {
-    	  GenericDialog gd = new GenericDialog("Tracing scale");
+        GenericDialog gd = new GenericDialog("Tracing scale");
           gd.addNumericField("Scaling: ", 1, 1);
           gd.showDialog();
           if (gd.wasCanceled()) return;
-          float scale = (float) gd.getNextNumber();	 
+          float scale = (float) gd.getNextNumber();    
           
-    	  if(rm.readSeedDataFile(false, scale)){
-        	  repaint();
-        	  int opt = JOptionPane.showConfirmDialog(null, "Is the tracing OK?",
-        			  "Tracing import", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
-        	  if (opt == JOptionPane.NO_OPTION){
-        		  new TranslateDialog(rm);
-        	  }
+        if(rm.readSeedDataFile(false, scale)){
+           repaint();
+           int opt = JOptionPane.showConfirmDialog(null, "Is the tracing OK?",
+                 "Tracing import", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+           if (opt == JOptionPane.NO_OPTION){
+              new TranslateDialog(rm);
+           }
           }
       }
 
@@ -1234,49 +1291,59 @@ class RootImageCanvas extends ImageCanvas
       
       else if (ac.startsWith("ADD_MARK")) {
          int type = Integer.parseInt(ac.substring(ac.lastIndexOf('_') + 1));
-         String value = Mark.getDefaultValue(type);
-         if(type == Mark.NUMBER) value = ""+(int)rm.getSelectedRoot().getNextNumberMarkValue(rm.getMarkerPosition());
-         if (type == Mark.ANCHOR) {
-            try {
-               value = JOptionPane.showInputDialog(imw, "Enter the position of the mark relative to the root origin:", "0.0");
-               double v = Double.parseDouble(value);
-               value = String.valueOf(Math.round(v * 100.0) / 100.0);
-            } catch(NullPointerException ex) {
-               value = "0.0";
-            } catch(Exception ex) {
-               JOptionPane.showMessageDialog(imw, value + " is not a valid number. A value of 0.0 has been set instead.",
-                     "Error", JOptionPane.ERROR_MESSAGE);
-               value = "0.0";
-            }
-            }
-         else if (Mark.needsValue(type)) {
-            value = JOptionPane.showInputDialog(imw, "Enter a mark value: ", value);
-            SR.write("Value = "+value);
+         autoMarkType = type;   // XD 201811 (line added)
+         addMark(type);  // XD 201811 (block that was here has bene encapsulated in new function addMark()
          }
-         if(value != null) tracingTwinMark = rm.addMark(type, value);
-         repaint();
-         }
+     
       currentPopup = null;
       lockMousePosition = false;
 
       }
 
+   // XD 20180811 - function created from block moved from actionPerfrmed() (block untouched) 
+   private void addMark(int type) {
+      String value = Mark.getDefaultValue(type);
+      if(type == Mark.NUMBER) value = ""+(int)rm.getSelectedRoot().getNextNumberMarkValue(rm.getMarkerPosition());
+      if (type == Mark.ANCHOR) {
+         try {
+            value = JOptionPane.showInputDialog(imw, "Enter the position of the mark relative to the root origin:", "0.0");
+            double v = Double.parseDouble(value);
+            value = String.valueOf(Math.round(v * 100.0) / 100.0);
+         } catch(NullPointerException ex) {
+            value = "0.0";
+         } catch(Exception ex) {
+            JOptionPane.showMessageDialog(imw, value + " is not a valid number. A value of 0.0 has been set instead.",
+                  "Error", JOptionPane.ERROR_MESSAGE);
+            value = "0.0";
+         }
+         }
+      else if (Mark.needsValue(type)) {
+         value = JOptionPane.showInputDialog(imw, "Enter a mark value: ", value);
+         SR.write("Value = "+value);
+      }
+      if(value != null) tracingTwinMark = rm.addMark(type, value);
+      repaint();
+   }
    
-	/**
-	 * 
-	 */
+   
+   
+   
+   /**
+    * 
+    */
    public boolean dispatchKeyEvent(KeyEvent e) {
       if (e.getID() == KeyEvent.KEY_PRESSED) keyPressed(e);
       else if (e.getID() == KeyEvent.KEY_RELEASED) keyReleased(e);
       return false;
       }
 
-	/**
-	 * Action trigger by pressing keys
-	 * @param e
-	 */
+   /**
+    * Action trigger by pressing keys
+    * @param e
+    */
    public void keyPressed (KeyEvent e) {
       int kc = e.getKeyCode();
+      // SR.write("KEY_PRESSED " + kc + " (ESC = " + KeyEvent.VK_ESCAPE + "), popup = " + currentPopup);
 
 
       if (kc == KeyEvent.VK_SPACE) IJ.setKeyDown(kc);
@@ -1322,10 +1389,10 @@ class RootImageCanvas extends ImageCanvas
          }
       }
 
-	/**
-	 *  Action trigger by releasing keys
-	 * @param e
-	 */
+   /**
+    *  Action trigger by releasing keys
+    * @param e
+    */
    public void keyReleased (KeyEvent e) {
       int kc = e.getKeyCode();
       if (kc == KeyEvent.VK_SPACE) IJ.setKeyUp(kc);
@@ -1346,27 +1413,27 @@ class RootImageCanvas extends ImageCanvas
          }
       }
 
-	/**
-	 * 
-	 * @param x
-	 * @return
-	 */
+   /**
+    * 
+    * @param x
+    * @return
+    */
    public float offScreen2DX(int x) {
       return (float) (srcRect.x + (x / getMagnification()));
       }
    
-	/**
-	 * 
-	 * @param y
-	 * @return
-	 */
+   /**
+    * 
+    * @param y
+    * @return
+    */
    public float offScreen2DY(int y) {
       return (float) (srcRect.y + (y / getMagnification()));
       }
 
-	/**
-	 * 
-	 */
+   /**
+    * 
+    */
    public void kill() {
       rm = null;                             // XD 20100628
       IJTool.removeMouseListener(this);      // XD 20100628
@@ -1375,9 +1442,9 @@ class RootImageCanvas extends ImageCanvas
       logNInstances();
       }
    
-	/**
-	 * 
-	 */
+   /**
+    * 
+    */
    public void notifySynchronize() {
       for (int i = 0; i < canvasList.size(); i++) {
          if (canvasList.get(i) != this) {
@@ -1386,9 +1453,9 @@ class RootImageCanvas extends ImageCanvas
          }
       }
 
-	/**
-	 * 
-	 */
+   /**
+    * 
+    */
    public void synchronize() {
       Point p = rm.getLocation(sync.getRootID(), sync.getLPos());
       if (p == null) return;
@@ -1416,11 +1483,11 @@ class RootImageCanvas extends ImageCanvas
       repaint();
       }
       
-	/**
-	 * 
-	 * @param rootID
-	 * @param lp
-	 */
+   /**
+    * 
+    * @param rootID
+    * @param lp
+    */
    public void traceListenerRuler(String rootID, float lp) {
       boolean paint = rm.makeListenerRulerLine(rootID, lp);
       if (paint) {
@@ -1430,27 +1497,27 @@ class RootImageCanvas extends ImageCanvas
          }
       }
 
-	/**
-	 * 
-	 * @return
-	 */
+   /**
+    * 
+    * @return
+    */
    public boolean isTracing() {return tracing; }
 
-	/**
-	 * 
-	 * @return
-	 */
+   /**
+    * 
+    * @return
+    */
    public boolean isListenerRuler() {return listenerRuler; }
 
-	/**
-	 * 
-	 */
+   /**
+    * 
+    */
    public void listenerRulerDone() {listenerRuler = false; }
    
-	/**
-	 * 
-	 * @return
-	 */
+   /**
+    * 
+    * @return
+    */
    public RootModel getModel() {return rm;}
 
    /**
@@ -1459,41 +1526,41 @@ class RootImageCanvas extends ImageCanvas
     * Not used right now
     */
    private int[][] getSkeletonTips(){
-	   
-	   ImageProcessor ip = imp.getProcessor().duplicate();
-	   ip.autoThreshold();
-	   BinaryProcessor bp = new BinaryProcessor(new ByteProcessor(ip, true));
-	   bp.skeletonize();	   
-	   bp.invert();
-	   ImagePlus im1 = new ImagePlus(); im1.setProcessor(bp);
-	   ParticleAnalyzer pa = new ParticleAnalyzer(ParticleAnalyzer.SHOW_MASKS, 0, new ResultsTable(), 100, 10e9, 0, 1);
-	   pa.analyze(im1);
-	   ImagePlus globalMask = IJ.getImage(); 
-	   globalMask.hide();
-	   bp = new BinaryProcessor(new ByteProcessor(globalMask.duplicate().getProcessor(), true));
-	   
-	   ArrayList<Integer> x = new ArrayList<Integer>();
-	   ArrayList<Integer> y = new ArrayList<Integer>();
-	   for(int w = 0; w < bp.getWidth(); w++){
-		   for(int h = 0; h < bp.getHeight(); h++){			   
-			   if(bp.get(w, h) > 125){
-				   int n = nNeighbours(bp, w, h);
-				   if(n == 1){
-					   x.add(w);
-					   y.add(h);
-				   }
-			   }
-		   }   
-	   }
-	   
-	   int[][] coord = new int[x.size()][2];
-	   for(int i = 0; i < x.size(); i++){
-		   coord[i][0] = x.get(i);
-		   coord[i][1] = y.get(i);
-	   }
-	   IJ.log(coord.length+"");
-	   return coord;
-	   
+      
+      ImageProcessor ip = imp.getProcessor().duplicate();
+      ip.autoThreshold();
+      BinaryProcessor bp = new BinaryProcessor(new ByteProcessor(ip, true));
+      bp.skeletonize();    
+      bp.invert();
+      ImagePlus im1 = new ImagePlus(); im1.setProcessor(bp);
+      ParticleAnalyzer pa = new ParticleAnalyzer(ParticleAnalyzer.SHOW_MASKS, 0, new ResultsTable(), 100, 10e9, 0, 1);
+      pa.analyze(im1);
+      ImagePlus globalMask = IJ.getImage(); 
+      globalMask.hide();
+      bp = new BinaryProcessor(new ByteProcessor(globalMask.duplicate().getProcessor(), true));
+      
+      ArrayList<Integer> x = new ArrayList<Integer>();
+      ArrayList<Integer> y = new ArrayList<Integer>();
+      for(int w = 0; w < bp.getWidth(); w++){
+         for(int h = 0; h < bp.getHeight(); h++){           
+            if(bp.get(w, h) > 125){
+               int n = nNeighbours(bp, w, h);
+               if(n == 1){
+                  x.add(w);
+                  y.add(h);
+               }
+            }
+         }   
+      }
+      
+      int[][] coord = new int[x.size()][2];
+      for(int i = 0; i < x.size(); i++){
+         coord[i][0] = x.get(i);
+         coord[i][1] = y.get(i);
+      }
+      IJ.log(coord.length+"");
+      return coord;
+      
    }
    
    /**
@@ -1504,14 +1571,14 @@ class RootImageCanvas extends ImageCanvas
     * @return
     */
    private int nNeighbours(ImageProcessor bp, int w, int h){
-	   int n = 0;
-	   for(int i = w-1; i <= w+1; i++){
-		   for(int j = h-1; j <= h+1; j++){
-			   if(bp.getPixel(i, j) > 125) n++;
-			   if(n == 3) return n-1;
-		   }
-	   }
-	   return n-1;
+      int n = 0;
+      for(int i = w-1; i <= w+1; i++){
+         for(int j = h-1; j <= h+1; j++){
+            if(bp.getPixel(i, j) > 125) n++;
+            if(n == 3) return n-1;
+         }
+      }
+      return n-1;
    }
    
    }

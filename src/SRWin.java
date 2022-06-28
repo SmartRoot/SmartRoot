@@ -476,7 +476,7 @@ public class SRWin extends JFrame implements ItemListener, ActionListener {
 	      imageFolderName.setAlignmentX(Component.LEFT_ALIGNMENT);
 	      imageFolderName.setEnabled(false);
 
-	      sqlCreate = new JCheckBox("Create table", true);
+	      sqlCreate = new JCheckBox("Create table", false);
 	      sqlCreate.setFont(font);
 	      sqlCreate.setAlignmentX(Component.LEFT_ALIGNMENT);
 	      
@@ -1908,6 +1908,11 @@ public class SRWin extends JFrame implements ItemListener, ActionListener {
       }
    
    
+   // XD 20180811 Method added
+   public void setDisplayMarks (boolean status) {
+      showMarks.setSelected(status);
+      rm.displayMarks = showMarks.isSelected();
+   }
 
 /**
     * 
